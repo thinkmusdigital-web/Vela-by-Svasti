@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { MediaImage } from "@/components/site/MediaImage";
 import { SectionHeading } from "@/components/site/SectionHeading";
@@ -7,16 +8,52 @@ import { RoomCard } from "@/components/site/RoomCard";
 import { getContentValue, getContentJson, getContactDetails } from "@/lib/content";
 import { prisma } from "@/lib/db";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+
 export const revalidate = 300;
 
+export const metadata: Metadata = {
+  title: {
+    absolute: "Lifestyle Hotel in VIP Chowk, Raipur | Stay, Dine & Celebrate",
+  },
+  description:
+    "Stay at a contemporary lifestyle hotel in VIP Chowk, Raipur. Enjoy comfortable rooms, fine dining, wellness, and celebration venues, all under one roof.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    siteName: "Vela by Svasti",
+    title: "Lifestyle Hotel in VIP Chowk, Raipur | Stay, Dine & Celebrate",
+    description:
+      "Stay at a contemporary lifestyle hotel in VIP Chowk, Raipur. Enjoy comfortable rooms, fine dining, wellness, and celebration venues, all under one roof.",
+    url: SITE_URL,
+    // TODO: Point og:image at a real 1200×630 JPG/PNG once a property photo is
+    // available. /images/hero.svg is used only as a placeholder — most social
+    // crawlers will not render an SVG in share cards.
+    images: [{ url: `${SITE_URL}/images/hero.svg` }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Lifestyle Hotel in VIP Chowk, Raipur | Stay, Dine & Celebrate",
+    description:
+      "Stay at a contemporary lifestyle hotel in VIP Chowk, Raipur. Enjoy comfortable rooms, fine dining, wellness, and celebration venues, all under one roof.",
+  },
+};
+
 export default async function HomePage() {
-  const [heroTitle, heroSubtitle, heroKicker, heroImage, aboutTitle, aboutBody, aboutImage,
+  const [heroTitle, heroTagline, heroSubtitle, heroKicker, heroImage, aboutTitle, aboutBody, aboutImage,
     stayBody, diningBody, wellnessBody, poolBody, eventsBody, offersBody, experiencesBody,
     testimonials, roomTypes, offers, gallery, contact, concept] = await Promise.all([
-    getContentValue("home.hero_title", "Stay in the Moment."),
+    getContentValue("home.hero_title", "Lifestyle Hotel at VIP Chowk, Raipur"),
+    getContentValue(
+      "home.hero_tagline",
+      "Stay. Dine. Unwind. Celebrate. Your lifestyle hotel in the heart of Raipur.",
+    ),
     getContentValue(
       "home.hero_subtitle",
-      "A contemporary lifestyle hotel at VIP Chowk, Raipur — stays, dining, wellness, celebrations and time well spent.",
+      "Welcome to a contemporary lifestyle hotel at VIP Chowk, Raipur, where comfortable stays, great dining, rejuvenating wellness, and memorable celebrations come together. Whether you're visiting for business, a weekend break, or a special occasion, every moment here is time well spent.",
     ),
     getContentValue("home.hero_kicker", "VIP Chowk · Raipur"),
     getContentValue("home.hero_image", "/images/hero.svg"),
@@ -92,11 +129,11 @@ export default async function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative flex min-h-[86svh] items-end bg-ink" aria-label="Welcome to Vela by Svasti">
+      <section className="relative flex min-h-[86svh] items-end bg-ink" aria-label="Lifestyle hotel at VIP Chowk, Raipur">
         <div className="absolute inset-0">
           <MediaImage
             src={heroImage}
-            alt="Vela by Svasti — contemporary lifestyle hotel at VIP Chowk, Raipur"
+            alt="Contemporary lifestyle hotel at VIP Chowk, Raipur"
             className="h-full w-full object-cover opacity-80"
             priority
           />
@@ -119,8 +156,11 @@ export default async function HomePage() {
               <span className="h-px w-10 bg-brass" aria-hidden="true" />
               {heroKicker}
             </p>
-            <h1 className="display max-w-4xl text-[clamp(3rem,9vw,6.5rem)] text-cream">{heroTitle}</h1>
-            <p className="mt-7 max-w-xl text-[1.05rem] leading-relaxed text-cream/80">{heroSubtitle}</p>
+            <h1 className="display max-w-5xl text-[clamp(2.6rem,8vw,5.8rem)] text-cream">{heroTitle}</h1>
+            <h2 className="display mt-6 max-w-3xl text-[clamp(1.4rem,3vw,2.3rem)] italic text-cream/90">
+              {heroTagline}
+            </h2>
+            <p className="mt-7 max-w-2xl text-[1.05rem] leading-relaxed text-cream/80">{heroSubtitle}</p>
             <div className="mt-10 flex flex-col items-start gap-3 sm:flex-row">
               <Link href="/enquire" className="btn-brass w-full sm:w-auto">
                 Enquire Now

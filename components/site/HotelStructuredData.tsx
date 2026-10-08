@@ -1,5 +1,7 @@
 import { getContactDetails } from "@/lib/content";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+
 export async function HotelStructuredData() {
   const contact = await getContactDetails();
 
@@ -8,8 +10,11 @@ export async function HotelStructuredData() {
     "@type": "Hotel",
     name: "Vela by Svasti",
     description:
-      "Contemporary lifestyle hotel at VIP Chowk, Raipur, Chhattisgarh — stays, dining, wellness and events.",
-    slogan: "Stay in the Moment.",
+      "Stay at a contemporary lifestyle hotel in VIP Chowk, Raipur. Enjoy comfortable rooms, fine dining, wellness, and celebration venues, all under one roof.",
+    url: SITE_URL,
+    // TODO: Replace with a real property photograph (absolute URL) once available.
+    image: `${SITE_URL}/images/hero.svg`,
+    slogan: "Stay. Dine. Unwind. Celebrate. Your lifestyle hotel in the heart of Raipur.",
     address: {
       "@type": "PostalAddress",
       streetAddress: "VIP Chowk",
@@ -26,6 +31,8 @@ export async function HotelStructuredData() {
       { "@type": "LocationFeatureSpecification", name: "Rooftop swimming pool" },
       { "@type": "LocationFeatureSpecification", name: "Banquet and event facilities" },
     ],
+    // TODO: contact.phone and contact.email are empty ("coming soon") until the
+    // hotel provides them — leave blank rather than invent values.
     ...(contact.phone && {
       telephone: contact.phone,
       contactPoint: {

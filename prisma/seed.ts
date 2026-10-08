@@ -64,13 +64,25 @@ const CONTENT: ContentSeed[] = [
 
   // Home — hero
   { key: "home.hero_kicker", label: "Hero kicker", value: "VIP Chowk · Raipur", group: "Home page" },
-  { key: "home.hero_title", label: "Hero title", value: "Stay in the Moment.", group: "Home page" },
+  {
+    key: "home.hero_title",
+    label: "Hero title (H1)",
+    value: "Lifestyle Hotel at VIP Chowk, Raipur",
+    group: "Home page",
+  },
+  {
+    key: "home.hero_tagline",
+    label: "Hero tagline (subheading)",
+    value: "Stay. Dine. Unwind. Celebrate. Your lifestyle hotel in the heart of Raipur.",
+    group: "Home page",
+  },
   {
     key: "home.hero_subtitle",
     label: "Hero subtitle",
     value:
-      "A contemporary lifestyle hotel at VIP Chowk, Raipur — stays, dining, wellness, celebrations and time well spent.",
+      "Welcome to a contemporary lifestyle hotel at VIP Chowk, Raipur, where comfortable stays, great dining, rejuvenating wellness, and memorable celebrations come together. Whether you're visiting for business, a weekend break, or a special occasion, every moment here is time well spent.",
     group: "Home page",
+    type: "textarea",
   },
   {
     key: "home.hero_image",

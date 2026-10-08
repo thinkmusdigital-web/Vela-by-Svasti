@@ -10,13 +10,24 @@ import { normalizeMobile, paragraph, singleLine } from "@/lib/sanitize";
 const MAX_TEXT = 500;
 const MAX_REQUEST = 4000;
 
-const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+// Accepts "YYYY-MM-DD" as well as full ISO datetimes (the browser form
+// sends Date objects via JSON.stringify, which serializes to the latter).
+const dateOnlyRegex = /^\d{4}-\d{2}-\d{2}$/;
+const dateRegex = /^\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}(?:\.\d{1,3})?(?:Z|[+-]\d{2}:\d{2}))?$/;
+
+function isValidCalendarDate(datePart: string): boolean {
+  const [year, month, day] = datePart.split("-").map(Number);
+  if (month < 1 || month > 12) return false;
+  const daysInMonth = new Date(Date.UTC(year, month, 0)).getUTCDate();
+  return day >= 1 && day <= daysInMonth;
+}
 
 function parseDate(value: string): Date | undefined {
-  if (!dateRegex.test(value)) return undefined;
-  const date = new Date(`${value}T00:00:00.000Z`);
+  if (!dateOnlyRegex.test(value) && !dateRegex.test(value)) return undefined;
+  if (!isValidCalendarDate(value.slice(0, 10))) return undefined; // rejects 2026-02-30
+  const normalized = dateOnlyRegex.test(value) ? `${value}T00:00:00.000Z` : value;
+  const date = new Date(normalized);
   if (Number.isNaN(date.getTime())) return undefined;
-  if (date.toISOString().slice(0, 10) !== value) return undefined; // rejects 2026-02-30
   return date;
 }
 
@@ -110,8 +121,8 @@ export const enquiryInputSchema = z
       }
     }
     if (
-      data.checkInDate &&
-      data.checkOutDate &&
+      data.checkInDate instanceof Date &&
+      data.checkOutDate instanceof Date &&
       data.checkOutDate.getTime() <= data.checkInDate.getTime()
     ) {
       ctx.addIssue({

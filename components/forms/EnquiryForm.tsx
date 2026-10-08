@@ -103,7 +103,14 @@ export function EnquiryForm({
     }
 
     setFieldErrors({});
-    const payload = parsed.data as EnquiryInput & { website: string };
+    // Send dates as canonical "YYYY-MM-DD" strings (same values the date
+    // inputs collected) rather than the serialized Date objects from
+    // JSON.stringify, which the server expects in date form.
+    const payload = {
+      ...parsed.data,
+      checkInDate: parsed.data.checkInDate ? parsed.data.checkInDate.toISOString().slice(0, 10) : undefined,
+      checkOutDate: parsed.data.checkOutDate ? parsed.data.checkOutDate.toISOString().slice(0, 10) : undefined,
+    } as EnquiryInput & { website: string };
 
     try {
       const response = await fetch("/api/enquiries", {

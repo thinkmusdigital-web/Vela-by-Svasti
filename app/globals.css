@@ -1,0 +1,131 @@
+@import "tailwindcss";
+@import "@fontsource-variable/fraunces";
+@import "@fontsource-variable/inter";
+
+@theme {
+  --color-ink: #14100c;
+  --color-charcoal: #1b1611;
+  --color-espresso: #251e17;
+  --color-sand: #f4efe6;
+  --color-cream: #faf8f3;
+  --color-parchment: #ece4d7;
+  --color-brass: #b08d57;
+  --color-brass-deep: #8f6f42;
+  --color-clay: #7d5f45;
+  --color-fog: #9c9285;
+  --color-stone: #6b6155;
+  --color-line: #e2d8c6;
+
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: "Fraunces Variable", Georgia, "Times New Roman", serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-cream text-ink font-sans antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-brass);
+  color: var(--color-cream);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brass-deep);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-[84rem] px-5 sm:px-8;
+  }
+
+  .eyebrow {
+    @apply font-sans text-[0.72rem] font-semibold uppercase tracking-[0.3em] text-brass-deep;
+  }
+
+  .display {
+    @apply font-display font-normal leading-[1.04] tracking-[-0.015em];
+  }
+
+  .h-section {
+    @apply font-display font-normal leading-[1.04] tracking-[-0.015em] text-[clamp(2rem,4vw,3.25rem)];
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 text-center font-sans text-[0.75rem] font-semibold uppercase tracking-[0.22em] transition-colors duration-300;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 text-center font-sans text-[0.75rem] font-semibold uppercase tracking-[0.22em] transition-colors duration-300 bg-ink text-cream hover:bg-espresso active:bg-ink disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-brass {
+    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 text-center font-sans text-[0.75rem] font-semibold uppercase tracking-[0.22em] transition-colors duration-300 bg-brass text-ink hover:bg-brass-deep hover:text-cream active:bg-brass disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 text-center font-sans text-[0.75rem] font-semibold uppercase tracking-[0.22em] transition-colors duration-300 border border-ink/35 text-ink hover:border-ink hover:bg-ink hover:text-cream active:bg-ink/90 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-light-outline {
+    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 text-center font-sans text-[0.75rem] font-semibold uppercase tracking-[0.22em] transition-colors duration-300 border border-cream/45 text-cream hover:bg-cream hover:text-ink active:bg-cream/90 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .link-underline {
+    @apply underline decoration-brass decoration-2 underline-offset-4 hover:decoration-ink transition-colors;
+  }
+
+  .input-field {
+    @apply w-full border border-line bg-white px-4 py-3 text-[0.95rem] text-ink placeholder:text-fog focus:border-brass-deep focus:outline-none focus:ring-2 focus:ring-brass/30 disabled:bg-sand disabled:text-fog;
+  }
+
+  .label-field {
+    @apply mb-2 block font-sans text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-stone;
+  }
+
+  .field-error {
+    @apply mt-1.5 text-[0.82rem] text-red-700;
+  }
+
+  .rule {
+    @apply border-0 border-t border-line;
+  }
+}
+
+/* Scroll reveal — applied via the Reveal client component. */
+.reveal-init {
+  opacity: 0;
+  transform: translateY(18px);
+}
+.reveal-in {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-init {
+    opacity: 1;
+    transform: none;
+  }
+}

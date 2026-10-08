@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1000" viewBox="0 0 1400 1000" role="img" aria-label="Deluxe Room placeholder image">
+  <title id="t-room-deluxe.svg">Deluxe Room — placeholder image</title>
+  <defs>
+    <linearGradient id="bg-room-deluxe.svg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1b1714"/>
+      <stop offset="55%" stop-color="#241e1a"/>
+      <stop offset="100%" stop-color="#33291f"/>
+    </linearGradient>
+    <linearGradient id="sheen-room-deluxe.svg" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#b08d57" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#b08d57" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#b08d57" stop-opacity="0"/>
+    </linearGradient>
+    <pattern id="grid-room-deluxe.svg" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M64 0H0V64" fill="none" stroke="#ffffff" stroke-opacity="0.04"/>
+    </pattern>
+  </defs>
+  <rect width="1400" height="1000" fill="url(#bg-room-deluxe.svg)"/>
+  <rect width="1400" height="1000" fill="url(#grid-room-deluxe.svg)"/>
+  <rect x="0" y="620" width="1400" height="2" fill="url(#sheen-room-deluxe.svg)"/>
+  <g transform="translate(700 400)" text-anchor="middle">
+    <circle r="110" fill="none" stroke="#b08d57" stroke-width="2" stroke-opacity="0.75"/>
+    <text y="45" font-family="Georgia, 'Times New Roman', serif" font-size="110" fill="#b08d57">V</text>
+  </g>
+  <g text-anchor="middle" font-family="Georgia, 'Times New Roman', serif">
+    <text x="700" y="610" font-size="32" fill="#f4efe8" letter-spacing="6">DELUXE ROOM</text>
+    <text x="700" y="660" font-size="24" fill="#a89f94" letter-spacing="3" font-family="Arial, Helvetica, sans-serif">REPLACE VIA ADMIN → ROOM TYPES</text>
+  </g>
+  <rect x="16" y="16" width="1368" height="968" fill="none" stroke="#ffffff" stroke-opacity="0.08"/>
+</svg>

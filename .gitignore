@@ -1,0 +1,30 @@
+node_modules/
+.next/
+out/
+build/
+coverage/
+
+# environment
+.env
+.env.local
+.env.*.local
+
+# database
+prisma/*.db
+prisma/*.db-journal
+prisma/*.db-shm
+prisma/*.db-wal
+
+# uploads (instance specific)
+public/uploads/*
+!public/uploads/.gitkeep
+
+# logs / os
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts

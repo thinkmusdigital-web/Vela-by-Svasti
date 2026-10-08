@@ -1,0 +1,225 @@
+// Vela by Svasti — Prisma schema
+// Provider: SQLite for local/dev/test. Designed for a one-line switch to PostgreSQL
+// (see DATABASE.md): no enums, no JSON columns, no array columns — all portable types.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Role {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  description String?
+  createdAt   DateTime @default(now())
+  users       User[]
+}
+
+model User {
+  id               String                @id @default(cuid())
+  name             String
+  email            String                @unique
+  passwordHash     String
+  roleId           String
+  role             Role                  @relation(fields: [roleId], references: [id])
+  active           Boolean               @default(true)
+  lastLoginAt      DateTime?
+  createdAt        DateTime              @default(now())
+  updatedAt        DateTime              @updatedAt
+  assignedEnquiries Enquiry[]            @relation("AssignedStaff")
+  followups        EnquiryFollowup[]
+  activityLogs     EnquiryActivityLog[]
+}
+
+model RoomType {
+  id               String      @id @default(cuid())
+  name             String
+  slug             String      @unique
+  shortDescription String      @default("")
+  description      String      @default("")
+  sizeSqft         Int?
+  bedType          String      @default("")
+  maxOccupancy     Int         @default(2)
+  displayOrder     Int         @default(0)
+  active           Boolean     @default(true)
+  seoTitle         String?
+  seoDescription   String?
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+  images           RoomImage[]
+  amenities        RoomAmenity[]
+  rooms            Room[]
+  offers           Offer[]
+  enquiries        Enquiry[]
+}
+
+model RoomImage {
+  id         String    @id @default(cuid())
+  roomTypeId String
+  roomType   RoomType  @relation(fields: [roomTypeId], references: [id], onDelete: Cascade)
+  url        String
+  alt        String    @default("")
+  sortOrder  Int       @default(0)
+  active     Boolean   @default(true)
+  createdAt  DateTime  @default(now())
+  @@index([roomTypeId])
+}
+
+model RoomAmenity {
+  id         String   @id @default(cuid())
+  roomTypeId String
+  roomType   RoomType @relation(fields: [roomTypeId], references: [id], onDelete: Cascade)
+  name       String
+  sortOrder  Int      @default(0)
+  @@index([roomTypeId])
+}
+
+// Individual room units (70+). Presentation/inventory placeholder for the future
+// booking engine — the public site lists RoomType, not individual units.
+model Room {
+  id         String   @id @default(cuid())
+  roomNumber String
+  roomTypeId String
+  roomType   RoomType @relation(fields: [roomTypeId], references: [id], onDelete: Cascade)
+  floor      String?
+  active     Boolean  @default(true)
+  notes      String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  @@unique([roomNumber])
+  @@index([roomTypeId])
+}
+
+model GalleryImage {
+  id        String   @id @default(cuid())
+  title     String?
+  alt       String
+  category  String   @default("HOTEL") // HOTEL ROOMS RESTAURANT CAFE BAR SPA GYM POOL EVENTS EXTERIOR INTERIOR
+  url       String
+  sortOrder Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  @@index([category])
+}
+
+model Offer {
+  id          String    @id @default(cuid())
+  name        String
+  slug        String    @unique
+  description String    @default("")
+  imageUrl    String?
+  validFrom   DateTime?
+  validUntil  DateTime?
+  roomTypeId  String?
+  roomType    RoomType? @relation(fields: [roomTypeId], references: [id], onDelete: SetNull)
+  terms       String    @default("")
+  active      Boolean   @default(true)
+  sortOrder   Int       @default(0)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  @@index([active])
+}
+
+model WebsiteContent {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  label     String
+  value     String   @default("")
+  group     String   @default("general")
+  type      String   @default("text") // text | textarea | json | image | boolean
+  updatedAt DateTime @updatedAt
+  @@index([group])
+}
+
+model Setting {
+  id    String @id @default(cuid())
+  key   String @unique
+  value String @default("")
+  label String @default("")
+  group String @default("general")
+  type  String @default("text")
+}
+
+model Enquiry {
+  id                 Int                  @id @default(autoincrement())
+  enquiryId          String               @unique
+  enquiryType        String               @default("STAY") // STAY | EVENT | GENERAL
+  customerName       String
+  mobileNumber       String
+  email              String
+  checkInDate        DateTime?
+  checkOutDate       DateTime?
+  adults             Int                  @default(1)
+  children           Int                  @default(0)
+  roomTypeId         String?
+  roomType           RoomType?            @relation(fields: [roomTypeId], references: [id], onDelete: SetNull)
+  numberOfRooms      Int                  @default(1)
+  purposeOfStay      String?
+  specialRequest     String?
+  preferredContact   String               @default("PHONE") // PHONE | WHATSAPP | EMAIL
+  source             String               @default("Website")
+  companyName        String?
+  eventType          String?
+  expectedGuests     Int?
+  approximateBudget  String?
+  preferredCallTime  String?
+  assignedStaffId    String?
+  assignedStaff      User?                @relation("AssignedStaff", fields: [assignedStaffId], references: [id], onDelete: SetNull)
+  callStatus         String               @default("PENDING_CALL") // PENDING_CALL CALLED NO_ANSWER CALL_BACK_REQUESTED NOT_INTERESTED
+  followUpDate       DateTime?
+  customerResponse   String?
+  quotationAmount    Float?
+  finalStatus        String               @default("NEW") // NEW CONTACTED FOLLOW_UP QUOTATION_SENT CONVERTED LOST CLOSED
+  remarks            String?
+  lastContactedAt    DateTime?
+  isPossibleDuplicate Boolean             @default(false)
+  duplicateOfId      Int?
+  createdByIp        String?
+  deletedAt          DateTime?
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  followups          EnquiryFollowup[]
+  activityLogs       EnquiryActivityLog[]
+
+  @@index([enquiryId])
+  @@index([mobileNumber])
+  @@index([email])
+  @@index([checkInDate])
+  @@index([followUpDate])
+  @@index([finalStatus])
+  @@index([assignedStaffId])
+  @@index([createdAt])
+}
+
+model EnquiryFollowup {
+  id              String    @id @default(cuid())
+  enquiryId       Int
+  enquiry         Enquiry   @relation(fields: [enquiryId], references: [id], onDelete: Cascade)
+  note            String    @default("")
+  followUpDate    DateTime?
+  completedAt     DateTime?
+  createdByUserId String?
+  createdBy       User?     @relation(fields: [createdByUserId], references: [id], onDelete: SetNull)
+  createdAt       DateTime  @default(now())
+  @@index([enquiryId])
+  @@index([followUpDate])
+}
+
+model EnquiryActivityLog {
+  id         String   @id @default(cuid())
+  enquiryId  Int
+  enquiry    Enquiry  @relation(fields: [enquiryId], references: [id], onDelete: Cascade)
+  userId     String?
+  user       User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  userLabel  String   @default("")
+  action     String
+  oldValue   String?
+  newValue   String?
+  createdAt  DateTime @default(now())
+  @@index([enquiryId])
+  @@index([createdAt])
+}

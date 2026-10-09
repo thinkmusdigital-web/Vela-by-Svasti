@@ -2,11 +2,19 @@ import { requirePermission } from "@/lib/admin-guard";
 import { json, jsonError, assertSameOrigin, readJson } from "@/lib/http";
 import { prisma } from "@/lib/db";
 import { paragraph } from "@/lib/sanitize";
+import { adminRateLimit } from "@/lib/rate-limit";
 
 export async function PUT(request: Request) {
   if (!assertSameOrigin(request)) return jsonError("Invalid request", 400);
   const guard = await requirePermission("content.manage");
   if (guard.error) return jsonError(guard.reason, guard.error);
+
+  const limited = adminRateLimit(request);
+  if (!limited.ok) {
+    return jsonError("Too many requests. Please try again shortly.", 429, {
+      retryAfter: limited.retryAfterSec,
+    });
+  }
 
   const body = await readJson(request);
   if (!body || typeof body !== "object" || !Array.isArray((body as { items?: unknown }).items)) {

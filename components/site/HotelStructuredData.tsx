@@ -1,4 +1,5 @@
 import { getContactDetails } from "@/lib/content";
+import { jsonLdString } from "@/lib/sanitize";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
@@ -46,6 +47,6 @@ export async function HotelStructuredData() {
   };
 
   return (
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdString(jsonLd) }} />
   );
 }

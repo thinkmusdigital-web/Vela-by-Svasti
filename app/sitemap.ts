@@ -17,7 +17,6 @@ const STATIC_ROUTES = [
   "/gallery",
   "/offers",
   "/location",
-  "/contact",
   "/enquire",
   "/privacy-policy",
   "/terms-conditions",

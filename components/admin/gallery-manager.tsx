@@ -72,7 +72,7 @@ export function GalleryManager({ images }: { images: GalleryImageRow[] }) {
     try {
       const form = new FormData();
       form.append("file", file);
-      const upload = await fetch("/api/uploads", { method: "POST", body: form });
+      const upload = await fetch("/api/uploads", { method: "POST", headers: HEADERS, body: form });
       const uploadData = await upload.json();
       if (!upload.ok || !uploadData?.url) {
         setError(uploadData?.message ?? "Upload failed.");

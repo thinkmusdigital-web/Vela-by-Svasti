@@ -31,3 +31,18 @@ export function isValidMobile(value: string): boolean {
   const digits = normalizeMobile(value);
   return /^[6-9]\d{9}$/.test(digits);
 }
+
+/**
+ * Serialises a value into an inline JSON script (e.g. application/ld+json)
+ * without letting its content break out of the <script> tag. JSON.stringify
+ * does not escape `<`/`>`/`&`, so admin-editable strings could otherwise
+ * close the tag and inject script.
+ */
+export function jsonLdString(value: unknown): string {
+  return JSON.stringify(value)
+    .replace(/\u2028/g, "\\u2028")
+    .replace(/\u2029/g, "\\u2029")
+    .replace(/&/g, "\\u0026")
+    .replace(/>/g, "\\u003e")
+    .replace(/</g, "\\u003c");
+}

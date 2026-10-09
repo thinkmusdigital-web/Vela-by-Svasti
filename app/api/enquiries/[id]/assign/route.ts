@@ -5,6 +5,7 @@ import { prisma } from "@/lib/db";
 import { getEnquiryForUser } from "@/lib/enquiry-access";
 import { logEnquiryActivity } from "@/lib/audit";
 import { ROLES } from "@/lib/constants";
+import { adminRateLimit } from "@/lib/rate-limit";
 import { z } from "zod";
 
 interface RouteProps {
@@ -22,6 +23,13 @@ export async function PATCH(request: Request, { params }: RouteProps) {
   const user = await getCurrentUser();
   if (!user) return jsonError("Unauthorized", 401);
   if (!can(user, "enquiry.manage")) return jsonError("Forbidden", 403);
+
+  const limited = adminRateLimit(request);
+  if (!limited.ok) {
+    return jsonError("Too many requests. Please try again shortly.", 429, {
+      retryAfter: limited.retryAfterSec,
+    });
+  }
 
   const id = Number((await params).id);
   if (!Number.isInteger(id)) return jsonError("Invalid enquiry", 400);

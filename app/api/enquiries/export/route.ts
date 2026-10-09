@@ -3,6 +3,7 @@ import { can } from "@/lib/rbac";
 import { jsonError } from "@/lib/http";
 import { parseEnquiryFilters, listEnquiries } from "@/lib/enquiry-query";
 import { buildEnquiryWorkbook, serializeWorkbook, exportFileName } from "@/lib/excel";
+import { adminRateLimit } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -11,6 +12,13 @@ export async function GET(request: Request) {
   const user = await getCurrentUser();
   if (!user) return jsonError("Unauthorized", 401);
   if (!can(user, "enquiry.export")) return jsonError("Forbidden", 403);
+
+  const limited = adminRateLimit(request);
+  if (!limited.ok) {
+    return jsonError("Too many requests. Please try again shortly.", 429, {
+      retryAfter: limited.retryAfterSec,
+    });
+  }
 
   const url = new URL(request.url);
   const filters = parseEnquiryFilters(Object.fromEntries(url.searchParams.entries()));

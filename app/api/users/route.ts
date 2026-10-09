@@ -3,29 +3,19 @@ import { json, jsonError, assertSameOrigin, readJson } from "@/lib/http";
 import { prisma } from "@/lib/db";
 import { hashPassword } from "@/lib/auth";
 import { ALL_ROLES } from "@/lib/constants";
-
-export async function GET() {
-  const guard = await requirePermission("enquiry.manage");
-  if (guard.error) return jsonError(guard.reason, guard.error);
-
-  const staff = await prisma.user.findMany({
-    where: { active: true, role: { name: { in: ["SUPER_ADMIN", "HOTEL_MANAGER", "RESERVATION_STAFF", "SALES_STAFF"] } } },
-    orderBy: { name: "asc" },
-    select: {
-      id: true,
-      name: true,
-      email: true,
-      role: { select: { name: true } },
-    },
-  });
-
-  return json({ staff });
-}
+import { adminRateLimit } from "@/lib/rate-limit";
 
 export async function POST(request: Request) {
   if (!assertSameOrigin(request)) return jsonError("Invalid request", 400);
   const guard = await requirePermission("users.manage");
   if (guard.error) return jsonError(guard.reason, guard.error);
+
+  const limited = adminRateLimit(request);
+  if (!limited.ok) {
+    return jsonError("Too many requests. Please try again shortly.", 429, {
+      retryAfter: limited.retryAfterSec,
+    });
+  }
 
   const body = (await readJson(request)) as Record<string, unknown> | null;
   if (!body || typeof body !== "object") return jsonError("Invalid body", 400);

@@ -3,7 +3,7 @@ import { json, jsonError, assertSameOrigin, readJson } from "@/lib/http";
 import { prisma } from "@/lib/db";
 import { parseRoomTypeInput } from "@/lib/room-type-data";
 import { slugify } from "@/lib/format";
-import { Prisma } from "@prisma/client";
+import { adminRateLimit } from "@/lib/rate-limit";
 
 interface RouteProps {
   params: Promise<{ id: string }>;
@@ -13,6 +13,13 @@ export async function PATCH(request: Request, { params }: RouteProps) {
   if (!assertSameOrigin(request)) return jsonError("Invalid request", 400);
   const guard = await requirePermission("roomTypes.manage");
   if (guard.error) return jsonError(guard.reason, guard.error);
+
+  const limited = adminRateLimit(request);
+  if (!limited.ok) {
+    return jsonError("Too many requests. Please try again shortly.", 429, {
+      retryAfter: limited.retryAfterSec,
+    });
+  }
 
   const id = (await params).id;
   const existing = await prisma.roomType.findUnique({ where: { id } });
@@ -75,24 +82,4 @@ export async function PATCH(request: Request, { params }: RouteProps) {
   });
 
   return json({ ok: true, roomType: updated });
-}
-
-export async function DELETE(_request: Request, { params }: RouteProps) {
-  const guard = await requirePermission("roomTypes.manage");
-  if (guard.error) return jsonError(guard.reason, guard.error);
-
-  const id = (await params).id;
-  const existing = await prisma.roomType.findUnique({ where: { id } });
-  if (!existing) return jsonError("Room type not found", 404);
-
-  try {
-    await prisma.roomType.delete({ where: { id } });
-  } catch (error) {
-    if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2003") {
-      return jsonError("Room type is in use and cannot be deleted. Set it inactive instead.", 400);
-    }
-    throw error;
-  }
-
-  return json({ ok: true });
 }

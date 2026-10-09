@@ -16,7 +16,6 @@ mkdirSync(outDir, { recursive: true });
 const images = [
   { file: "hero.svg", label: "Hero", caption: "Replace via Admin → Website Content", w: 1920, h: 1100, tone: "#14110f", accent: "#b08d57" },
   { file: "about.svg", label: "About Vela", caption: "Replace via Admin → Website Content", w: 1400, h: 1050 },
-  { file: "stay.svg", label: "Stay", caption: "70+ rooms", w: 1400, h: 1050 },
   { file: "dining.svg", label: "Fine Dining", caption: "Replace via Admin → Website Content", w: 1400, h: 1050 },
   { file: "cafe.svg", label: "Café", caption: "Replace via Admin → Website Content", w: 1400, h: 1050 },
   { file: "bar.svg", label: "Bar", caption: "Replace via Admin → Website Content", w: 1400, h: 1050 },

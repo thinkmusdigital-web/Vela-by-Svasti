@@ -1,6 +1,7 @@
 import "server-only";
 import { cache } from "react";
 import { prisma } from "@/lib/db";
+import { isHttpUrl, safeEmbedUrl } from "@/lib/url";
 
 export const getContentMap = cache(async (): Promise<Record<string, string>> => {
   const rows = await prisma.websiteContent.findMany({ select: { key: true, value: true } });
@@ -36,23 +37,28 @@ export interface ContactDetails {
 export const getContactDetails = cache(async (): Promise<ContactDetails> => {
   const map = await getContentMap();
   const address = map["contact.address"] || "VIP Chowk, Raipur, Chhattisgarh";
-  const directionsUrl =
-    map["contact.directionsUrl"] ||
-    `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`;
+
+  // Admin-editable URLs are allow-listed at render time: non-http(s) values
+  // (e.g. javascript:) are dropped so they can never become active code.
+  const configuredDirections = map["contact.directionsUrl"] || "";
+  const directionsUrl = isHttpUrl(configuredDirections)
+    ? configuredDirections
+    : `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`;
+  const mapEmbedUrl = safeEmbedUrl(map["contact.mapEmbedUrl"] || "");
 
   const socials = [
     { label: "Instagram", url: map["social.instagram"] || "" },
     { label: "Facebook", url: map["social.facebook"] || "" },
     { label: "YouTube", url: map["social.youtube"] || "" },
     { label: "LinkedIn", url: map["social.linkedin"] || "" },
-  ].filter((s) => s.url);
+  ].filter((s) => isHttpUrl(s.url));
 
   return {
     address,
     phone: map["contact.phone"] || "",
     email: map["contact.email"] || "",
     whatsapp: map["contact.whatsapp"] || "",
-    mapEmbedUrl: map["contact.mapEmbedUrl"] || "",
+    mapEmbedUrl,
     directionsUrl,
     socials,
   };

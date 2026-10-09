@@ -1,38 +1,24 @@
 import { requirePermission } from "@/lib/admin-guard";
 import { json, jsonError, assertSameOrigin, readJson } from "@/lib/http";
 import { prisma } from "@/lib/db";
+import { adminRateLimit } from "@/lib/rate-limit";
 import { Prisma } from "@prisma/client";
-
-export const revalidate = 300;
 
 interface RouteProps {
   params: Promise<{ key: string }>;
-}
-
-export async function GET(_request: Request, { params }: RouteProps) {
-  const key = (await params).key;
-  const roomType = await prisma.roomType.findUnique({
-    where: { slug: key },
-    include: {
-      images: {
-        select: { id: true, url: true, alt: true, sortOrder: true },
-        orderBy: { sortOrder: "asc" as const },
-      },
-      amenities: { select: { id: true, name: true } },
-    },
-  });
-
-  if (!roomType || !roomType.active) {
-    return jsonError("Room type not found", 404);
-  }
-
-  return json({ roomType });
 }
 
 export async function PATCH(request: Request, { params }: RouteProps) {
   if (!assertSameOrigin(request)) return jsonError("Invalid request", 400);
   const guard = await requirePermission("rooms.manage");
   if (guard.error) return jsonError(guard.reason, guard.error);
+
+  const limited = adminRateLimit(request);
+  if (!limited.ok) {
+    return jsonError("Too many requests. Please try again shortly.", 429, {
+      retryAfter: limited.retryAfterSec,
+    });
+  }
 
   const id = (await params).key;
   const existing = await prisma.room.findUnique({ where: { id } });

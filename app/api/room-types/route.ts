@@ -1,14 +1,21 @@
-import { getCurrentUser } from "@/lib/auth";
 import { requirePermission } from "@/lib/admin-guard";
 import { json, jsonError, assertSameOrigin, readJson } from "@/lib/http";
 import { prisma } from "@/lib/db";
 import { parseRoomTypeInput } from "@/lib/room-type-data";
 import { slugify, ensureUniqueSlug } from "@/lib/format";
+import { adminRateLimit } from "@/lib/rate-limit";
 
 export async function POST(request: Request) {
   if (!assertSameOrigin(request)) return jsonError("Invalid request", 400);
   const guard = await requirePermission("roomTypes.manage");
   if (guard.error) return jsonError(guard.reason, guard.error);
+
+  const limited = adminRateLimit(request);
+  if (!limited.ok) {
+    return jsonError("Too many requests. Please try again shortly.", 429, {
+      retryAfter: limited.retryAfterSec,
+    });
+  }
 
   const body = await readJson(request);
   const { data, error } = parseRoomTypeInput(body);
@@ -62,25 +69,4 @@ export async function POST(request: Request) {
   });
 
   return json({ ok: true, roomType }, 201);
-}
-
-export async function GET() {
-  const user = await getCurrentUser();
-  const all = user && (await requirePermission("roomTypes.manage")).error === null;
-
-  const roomTypes = await prisma.roomType.findMany({
-    where: all ? {} : { active: true },
-    orderBy: { displayOrder: "asc" },
-    include: {
-      images: {
-        select: { id: true, url: true, alt: true, sortOrder: true },
-        orderBy: { sortOrder: "asc" as const },
-      },
-      amenities: { select: { id: true, name: true } },
-      _count: { select: { rooms: true } },
-    },
-    take: 100,
-  });
-
-  return json({ roomTypes });
 }

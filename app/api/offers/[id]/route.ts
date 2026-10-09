@@ -3,6 +3,7 @@ import { json, jsonError, assertSameOrigin, readJson } from "@/lib/http";
 import { prisma } from "@/lib/db";
 import { parseOfferInput } from "@/lib/offer-data";
 import { slugify } from "@/lib/format";
+import { adminRateLimit } from "@/lib/rate-limit";
 
 interface RouteProps {
   params: Promise<{ id: string }>;
@@ -12,6 +13,13 @@ export async function PATCH(request: Request, { params }: RouteProps) {
   if (!assertSameOrigin(request)) return jsonError("Invalid request", 400);
   const guard = await requirePermission("offers.manage");
   if (guard.error) return jsonError(guard.reason, guard.error);
+
+  const limited = adminRateLimit(request);
+  if (!limited.ok) {
+    return jsonError("Too many requests. Please try again shortly.", 429, {
+      retryAfter: limited.retryAfterSec,
+    });
+  }
 
   const id = (await params).id;
   const existing = await prisma.offer.findUnique({ where: { id } });
@@ -53,9 +61,17 @@ export async function PATCH(request: Request, { params }: RouteProps) {
   return json({ ok: true, offer });
 }
 
-export async function DELETE(_request: Request, { params }: RouteProps) {
+export async function DELETE(request: Request, { params }: RouteProps) {
+  if (!assertSameOrigin(request)) return jsonError("Invalid request", 400);
   const guard = await requirePermission("offers.manage");
   if (guard.error) return jsonError(guard.reason, guard.error);
+
+  const limited = adminRateLimit(request);
+  if (!limited.ok) {
+    return jsonError("Too many requests. Please try again shortly.", 429, {
+      retryAfter: limited.retryAfterSec,
+    });
+  }
 
   const id = (await params).id;
   const existing = await prisma.offer.findUnique({ where: { id } });

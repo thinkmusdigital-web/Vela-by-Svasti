@@ -62,7 +62,8 @@ export async function POST(request: Request) {
   return response;
 }
 
-export async function DELETE() {
+export async function DELETE(request: Request) {
+  if (!assertSameOrigin(request)) return jsonError("Invalid request", 400);
   await destroySession();
   return json({ ok: true });
 }

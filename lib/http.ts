@@ -35,9 +35,19 @@ export function assertSameOrigin(request: Request): boolean {
   }
 }
 
+/**
+ * Best-effort real client IP for rate limiting.
+ *
+ * By default we ignore the client-supplied `x-forwarded-for` header, which an
+ * attacker can spoof to rotate past per-IP limits. Only a trusted reverse
+ * proxy that rewrites/overwrites the header should set TRUST_PROXY=1.
+ */
 export function clientIp(request: Request): string {
-  const forwarded = request.headers.get("x-forwarded-for");
-  if (forwarded) return forwarded.split(",")[0].trim();
+  if (process.env.TRUST_PROXY === "1") {
+    const forwarded = request.headers.get("x-forwarded-for");
+    const first = forwarded?.split(",")[0]?.trim();
+    if (first) return first;
+  }
   return request.headers.get("x-real-ip") ?? "unknown";
 }
 

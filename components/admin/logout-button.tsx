@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
+const HEADERS = { "x-requested-with": "vela-admin-panel" } as const;
+
 export function LogoutButton() {
   const router = useRouter();
   const [busy, setBusy] = useState(false);
@@ -10,7 +12,7 @@ export function LogoutButton() {
   async function logout() {
     setBusy(true);
     try {
-      await fetch("/api/auth", { method: "DELETE" });
+      await fetch("/api/auth", { method: "DELETE", headers: HEADERS });
     } finally {
       router.replace("/admin/login");
       router.refresh();

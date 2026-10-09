@@ -2,7 +2,8 @@ import { writeFile, mkdir } from "fs/promises";
 import path from "path";
 import crypto from "crypto";
 import { requireAnyPermission } from "@/lib/admin-guard";
-import { json, jsonError } from "@/lib/http";
+import { json, jsonError, assertSameOrigin } from "@/lib/http";
+import { adminRateLimit } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -16,6 +17,15 @@ const ALLOWED: Record<string, string> = {
 const MAX_BYTES = 8 * 1024 * 1024;
 
 export async function POST(request: Request) {
+  if (!assertSameOrigin(request)) return jsonError("Invalid request", 400);
+
+  const limited = adminRateLimit(request);
+  if (!limited.ok) {
+    return jsonError("Too many requests. Please try again shortly.", 429, {
+      retryAfter: limited.retryAfterSec,
+    });
+  }
+
   const guard = await requireAnyPermission([
     "gallery.manage",
     "roomTypes.manage",

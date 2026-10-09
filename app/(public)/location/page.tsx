@@ -78,6 +78,7 @@ export default async function LocationPage() {
                   className="h-full w-full"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
+                  sandbox="allow-scripts allow-same-origin allow-popups"
                   allowFullScreen
                 />
               </div>

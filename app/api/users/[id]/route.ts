@@ -4,6 +4,7 @@ import { prisma } from "@/lib/db";
 import { hashPassword } from "@/lib/auth";
 import { ALL_ROLES } from "@/lib/constants";
 import { Prisma } from "@prisma/client";
+import { adminRateLimit } from "@/lib/rate-limit";
 
 interface RouteProps {
   params: Promise<{ id: string }>;
@@ -13,6 +14,13 @@ export async function POST(request: Request, { params }: RouteProps) {
   if (!assertSameOrigin(request)) return jsonError("Invalid request", 400);
   const guard = await requirePermission("users.manage");
   if (guard.error) return jsonError(guard.reason, guard.error);
+
+  const limited = adminRateLimit(request);
+  if (!limited.ok) {
+    return jsonError("Too many requests. Please try again shortly.", 429, {
+      retryAfter: limited.retryAfterSec,
+    });
+  }
 
   const id = (await params).id;
   const existing = await prisma.user.findUnique({

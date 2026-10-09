@@ -2,11 +2,19 @@ import { requirePermission } from "@/lib/admin-guard";
 import { json, jsonError, assertSameOrigin, readJson } from "@/lib/http";
 import { prisma } from "@/lib/db";
 import { GALLERY_CATEGORIES } from "@/lib/constants";
+import { adminRateLimit } from "@/lib/rate-limit";
 
 export async function POST(request: Request) {
   if (!assertSameOrigin(request)) return jsonError("Invalid request", 400);
   const guard = await requirePermission("gallery.manage");
   if (guard.error) return jsonError(guard.reason, guard.error);
+
+  const limited = adminRateLimit(request);
+  if (!limited.ok) {
+    return jsonError("Too many requests. Please try again shortly.", 429, {
+      retryAfter: limited.retryAfterSec,
+    });
+  }
 
   const body = (await readJson(request)) as Record<string, unknown> | null;
   if (!body || typeof body !== "object") return jsonError("Invalid body", 400);

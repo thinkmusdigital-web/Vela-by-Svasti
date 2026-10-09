@@ -1,6 +1,3 @@
-import { getCurrentUser } from "@/lib/auth";
-import { can } from "@/lib/rbac";
-import { parseEnquiryFilters, listEnquiries } from "@/lib/enquiry-query";
 import { clientIp, json, jsonError, assertSameOrigin, readJson } from "@/lib/http";
 import { consume, RATE_LIMITS } from "@/lib/rate-limit";
 import { enquiryInputSchema, formatZodErrors } from "@/lib/validate";
@@ -56,19 +53,4 @@ export async function POST(request: Request) {
       500,
     );
   }
-}
-
-export async function GET(request: Request) {
-  const user = await getCurrentUser();
-  if (!user) return jsonError("Unauthorized", 401);
-  if (!can(user, "enquiry.viewAll") && !can(user, "enquiry.viewAssigned")) {
-    return jsonError("Forbidden", 403);
-  }
-
-  const url = new URL(request.url);
-  const filters = parseEnquiryFilters(Object.fromEntries(url.searchParams.entries()));
-  const scope = { all: can(user, "enquiry.viewAll"), userId: user.id };
-
-  const result = await listEnquiries(filters, scope);
-  return json(result);
 }

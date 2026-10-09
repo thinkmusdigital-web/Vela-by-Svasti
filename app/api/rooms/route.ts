@@ -1,41 +1,20 @@
 import { json, jsonError, assertSameOrigin, readJson } from "@/lib/http";
 import { prisma } from "@/lib/db";
 import { requirePermission } from "@/lib/admin-guard";
+import { adminRateLimit } from "@/lib/rate-limit";
 import { Prisma } from "@prisma/client";
-
-export const revalidate = 300;
-
-const INCLUDE = {
-  images: {
-    select: { id: true, url: true, alt: true, sortOrder: true },
-    orderBy: { sortOrder: "asc" as const },
-  },
-  amenities: { select: { id: true, name: true } },
-};
-
-export async function GET(request: Request) {
-  const url = new URL(request.url);
-  const includeAll = url.searchParams.get("all") === "1";
-
-  if (includeAll) {
-    const guard = await requirePermission("roomTypes.manage");
-    if (guard.error) return jsonError(guard.reason, guard.error);
-  }
-
-  const roomTypes = await prisma.roomType.findMany({
-    where: includeAll ? {} : { active: true },
-    orderBy: { displayOrder: "asc" },
-    include: { ...INCLUDE, _count: { select: { rooms: true } } },
-    take: 100,
-  });
-
-  return json({ roomTypes });
-}
 
 export async function POST(request: Request) {
   if (!assertSameOrigin(request)) return jsonError("Invalid request", 400);
   const guard = await requirePermission("rooms.manage");
   if (guard.error) return jsonError(guard.reason, guard.error);
+
+  const limited = adminRateLimit(request);
+  if (!limited.ok) {
+    return jsonError("Too many requests. Please try again shortly.", 429, {
+      retryAfter: limited.retryAfterSec,
+    });
+  }
 
   const body = (await readJson(request)) as Record<string, unknown> | null;
   if (!body || typeof body !== "object") return jsonError("Invalid body", 400);

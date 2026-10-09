@@ -174,7 +174,7 @@ function RoomTypeForm({
     try {
       const formData = new FormData();
       formData.append("file", file);
-      const response = await fetch("/api/uploads", { method: "POST", body: formData });
+      const response = await fetch("/api/uploads", { method: "POST", headers: HEADERS, body: formData });
       const data = await response.json();
       if (!response.ok || !data?.url) {
         notice(data?.message ?? "Upload failed", true);

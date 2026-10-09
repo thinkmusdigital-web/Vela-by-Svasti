@@ -87,7 +87,7 @@ const CONTENT: ContentSeed[] = [
   {
     key: "home.hero_image",
     label: "Hero image path",
-    value: "/images/hero.svg",
+    value: "/images/hotel-exterior.jpg",
     group: "Home page",
     type: "image",
   },
@@ -105,7 +105,7 @@ const CONTENT: ContentSeed[] = [
   {
     key: "home.about_image",
     label: "About section image path",
-    value: "/images/about.svg",
+    value: "/images/hotel-lobby.jpg",
     group: "Home page",
     type: "image",
   },
@@ -323,7 +323,7 @@ const ROOM_TYPES: RoomTypeSeed[] = [
     sizeSqft: 320,
     bedType: "King or twin beds",
     maxOccupancy: 3,
-    image: "/images/room-deluxe.svg",
+    image: "/images/hotel-room-teal.jpg",
   },
   {
     name: "Premium Room",
@@ -334,7 +334,7 @@ const ROOM_TYPES: RoomTypeSeed[] = [
     sizeSqft: 400,
     bedType: "King bed",
     maxOccupancy: 3,
-    image: "/images/room-premium.svg",
+    image: "/images/hotel-room-crimson.jpg",
   },
   {
     name: "Executive Suite",
@@ -360,16 +360,16 @@ const AMENITIES = [
 ];
 
 const GALLERY_SEED = [
-  { category: "EXTERIOR", url: "/images/gallery-exterior.svg", alt: "Hotel exterior placeholder" },
-  { category: "INTERIOR", url: "/images/gallery-interior.svg", alt: "Hotel interior placeholder" },
-  { category: "ROOMS", url: "/images/room-deluxe.svg", alt: "Deluxe room placeholder" },
-  { category: "RESTAURANT", url: "/images/gallery-restaurant.svg", alt: "Restaurant placeholder" },
-  { category: "CAFE", url: "/images/gallery-cafe.svg", alt: "Café placeholder" },
-  { category: "BAR", url: "/images/gallery-bar.svg", alt: "Bar placeholder" },
-  { category: "SPA", url: "/images/gallery-spa.svg", alt: "Spa placeholder" },
-  { category: "GYM", url: "/images/gallery-gym.svg", alt: "Gym placeholder" },
-  { category: "POOL", url: "/images/gallery-pool.svg", alt: "Rooftop pool placeholder" },
-  { category: "EVENTS", url: "/images/gallery-events.svg", alt: "Banquet hall placeholder" },
+  { category: "EXTERIOR", url: "/images/hotel-exterior.jpg", alt: "Hotel exterior at Vela by Svasti" },
+  { category: "INTERIOR", url: "/images/hotel-lobby.jpg", alt: "Hotel lobby at Vela by Svasti" },
+  { category: "ROOMS", url: "/images/hotel-room-teal.jpg", alt: "Guest room at Vela by Svasti" },
+  { category: "RESTAURANT", url: "/images/hotel-restaurant.jpg", alt: "Restaurant at Vela by Svasti" },
+  { category: "CAFE", url: "/images/hotel-cafe.jpg", alt: "Cafe at Vela by Svasti" },
+  { category: "BAR", url: "/images/hotel-bar.jpg", alt: "Bar at Vela by Svasti" },
+  { category: "SPA", url: "/images/gallery-spa.svg", alt: "Spa artwork placeholder" },
+  { category: "GYM", url: "/images/gallery-gym.svg", alt: "Gym artwork placeholder" },
+  { category: "POOL", url: "/images/gallery-pool.svg", alt: "Rooftop pool artwork placeholder" },
+  { category: "EVENTS", url: "/images/hotel-events.jpg", alt: "Banquet hall at Vela by Svasti" },
 ];
 
 async function main() {

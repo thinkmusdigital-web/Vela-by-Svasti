@@ -60,7 +60,7 @@ export default async function OfferDetailPage({ params }: PageProps) {
           <div>
             <div className="relative aspect-[16/9] overflow-hidden">
               <MediaImage
-                src={offer.imageUrl || "/images/gallery-exterior.svg"}
+                src={offer.imageUrl || "/images/hotel-exterior.jpg"}
                 alt={offer.name}
                 className="h-full w-full object-cover"
                 priority

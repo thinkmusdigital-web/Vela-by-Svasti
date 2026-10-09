@@ -29,10 +29,7 @@ export const metadata: Metadata = {
     description:
       "Stay at a contemporary lifestyle hotel in VIP Chowk, Raipur. Enjoy comfortable rooms, fine dining, wellness, and celebration venues, all under one roof.",
     url: SITE_URL,
-    // TODO: Point og:image at a real 1200×630 JPG/PNG once a property photo is
-    // available. /images/hero.svg is used only as a placeholder — most social
-    // crawlers will not render an SVG in share cards.
-    images: [{ url: `${SITE_URL}/images/hero.svg` }],
+    images: [{ url: `${SITE_URL}/images/hotel-exterior.jpg` }],
   },
   twitter: {
     card: "summary_large_image",
@@ -56,13 +53,13 @@ export default async function HomePage() {
       "Welcome to a contemporary lifestyle hotel at VIP Chowk, Raipur, where comfortable stays, great dining, rejuvenating wellness, and memorable celebrations come together. Whether you're visiting for business, a weekend break, or a special occasion, every moment here is time well spent.",
     ),
     getContentValue("home.hero_kicker", "VIP Chowk · Raipur"),
-    getContentValue("home.hero_image", "/images/hero.svg"),
+    getContentValue("home.hero_image", "/images/hotel-exterior.jpg"),
     getContentValue("home.about_title", "About Vela"),
     getContentValue(
       "home.about_body",
       "Vela by Svasti is a contemporary lifestyle hospitality destination at VIP Chowk, Raipur, Chhattisgarh.",
     ),
-    getContentValue("home.about_image", "/images/about.svg"),
+    getContentValue("home.about_image", "/images/hotel-lobby.jpg"),
     getContentValue(
       "home.stay_body",
       "More than 70 rooms designed for rest, focus and ease — choose the space that fits your stay.",
@@ -240,9 +237,9 @@ export default async function HomePage() {
           />
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {[
-              { image: "/images/dining.svg", label: "Fine Dining", body: "An unhurried restaurant experience.", href: "/dine" },
-              { image: "/images/cafe.svg", label: "Café", body: "Slow mornings and working lunches.", href: "/dine" },
-              { image: "/images/bar.svg", label: "Bar", body: "A premium bar to end the day well.", href: "/dine" },
+              { image: "/images/hotel-restaurant.jpg", label: "Fine Dining", body: "An unhurried restaurant experience.", href: "/dine" },
+              { image: "/images/hotel-cafe.jpg", label: "Café", body: "Slow mornings and working lunches.", href: "/dine" },
+              { image: "/images/hotel-bar.jpg", label: "Bar", body: "A premium bar to end the day well.", href: "/dine" },
             ].map((item) => (
               <Link key={item.label} href={item.href} className="group">
                 <div className="relative aspect-[4/3] overflow-hidden">
@@ -335,8 +332,8 @@ export default async function HomePage() {
             </div>
           </div>
           <Reveal>
-            <div className="aspect-[4/3] overflow-hidden">
-              <MediaImage src="/images/events.svg" alt="Banquet and event facilities at Vela by Svasti" className="h-full w-full object-cover" />
+            <div className="relative aspect-[4/3] overflow-hidden">
+              <MediaImage src="/images/hotel-events.jpg" alt="Banquet and event facilities at Vela by Svasti" className="h-full w-full object-cover" />
             </div>
           </Reveal>
         </div>
@@ -357,9 +354,9 @@ export default async function HomePage() {
             <div className="mt-12 grid gap-6 md:grid-cols-3">
               {offers.map((offer) => (
                 <Link key={offer.id} href={`/offers/${offer.slug}`} className="group border border-line bg-cream">
-                  <div className="aspect-[16/10] overflow-hidden">
+                  <div className="relative aspect-[16/10] overflow-hidden">
                     <MediaImage
-                      src={offer.imageUrl || "/images/gallery-exterior.svg"}
+                      src={offer.imageUrl || "/images/hotel-exterior.jpg"}
                       alt={offer.name}
                       className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                     />
@@ -456,7 +453,7 @@ export default async function HomePage() {
         <div className="shell grid items-center gap-12 py-20 lg:grid-cols-2 lg:py-28">
           <Reveal>
             <div className="relative aspect-[16/9] overflow-hidden">
-              <MediaImage src="/images/location.svg" alt="Vela by Svasti at VIP Chowk, Raipur" className="h-full w-full object-cover" />
+              <MediaImage src="/images/hotel-exterior.jpg" alt="Vela by Svasti at VIP Chowk, Raipur" className="h-full w-full object-cover" />
             </div>
           </Reveal>
           <div>

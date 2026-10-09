@@ -12,7 +12,7 @@ interface RoomCardRoom {
 }
 
 export function RoomCard({ room }: { room: RoomCardRoom }) {
-  const image = room.images[0] ?? { url: "/images/room-deluxe.svg", alt: "" };
+  const image = room.images[0] ?? { url: "/images/hotel-room-teal.jpg", alt: "" };
 
   return (
     <article className="group flex flex-col border border-line bg-white">

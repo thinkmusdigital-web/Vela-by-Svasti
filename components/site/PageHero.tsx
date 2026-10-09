@@ -19,7 +19,7 @@ export function PageHero({ eyebrow, title, intro, image, imageAlt }: PageHeroPro
       {image && (
         <div className="border-t border-line">
           <div className="shell pb-8">
-            <div className="aspect-[21/9] overflow-hidden">
+            <div className="relative aspect-[21/9] overflow-hidden">
               <MediaImage src={image} alt={imageAlt ?? title} className="h-full w-full object-cover" priority />
             </div>
           </div>

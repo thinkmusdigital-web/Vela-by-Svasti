@@ -37,7 +37,7 @@ export default async function AboutPage() {
         eyebrow="About"
         title="Vela by Svasti"
         intro="Stay in the Moment — a contemporary lifestyle hotel at VIP Chowk, Raipur, Chhattisgarh."
-        image="/images/about.svg"
+        image="/images/hotel-exterior.jpg"
         imageAlt="About Vela by Svasti"
       />
 
@@ -75,7 +75,7 @@ export default async function AboutPage() {
       <section className="relative bg-espresso" aria-label="Vela concept image">
         <div className="relative min-h-[420px]">
           <div className="absolute inset-0">
-            <MediaImage src="/images/experience.svg" alt="The Vela by Svasti concept" className="h-full w-full object-cover opacity-70" />
+            <MediaImage src="/images/hotel-corridor.jpg" alt="The Vela by Svasti concept" className="h-full w-full object-cover opacity-70" />
             <div className="absolute inset-0 bg-gradient-to-r from-ink/80 to-ink/30" />
           </div>
           <div className="shell relative z-10 flex min-h-[420px] items-center">

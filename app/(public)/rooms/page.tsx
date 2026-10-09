@@ -35,7 +35,7 @@ export default async function RoomsPage() {
         eyebrow="Stay"
         title="Rooms for every kind of stay"
         intro={intro}
-        image="/images/room-premium.svg"
+        image="/images/hotel-room-teal.jpg"
         imageAlt="Rooms at Vela by Svasti"
       />
 

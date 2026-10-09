@@ -34,7 +34,7 @@ export default async function ExperiencePage() {
         eyebrow="Experience"
         title="Time, well spent"
         intro={body}
-        image="/images/experience.svg"
+        image="/images/hotel-lobby-wide.jpg"
         imageAlt="Experience at Vela by Svasti"
       />
 

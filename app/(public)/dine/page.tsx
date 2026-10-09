@@ -23,9 +23,9 @@ export default async function DinePage() {
   ]);
 
   const venues = [
-    { eyebrow: "Fine Dining", title: "An unhurried table", body: restaurantBody, image: "/images/dining.svg", alt: "Fine dining restaurant at Vela" },
-    { eyebrow: "Café", title: "Slow mornings", body: cafeBody, image: "/images/cafe.svg", alt: "Café at Vela" },
-    { eyebrow: "Bar", title: "Evenings, well kept", body: barBody, image: "/images/bar.svg", alt: "Premium bar at Vela" },
+    { eyebrow: "Fine Dining", title: "An unhurried table", body: restaurantBody, image: "/images/hotel-restaurant.jpg", alt: "Fine dining restaurant at Vela" },
+    { eyebrow: "Café", title: "Slow mornings", body: cafeBody, image: "/images/hotel-cafe.jpg", alt: "Café at Vela" },
+    { eyebrow: "Bar", title: "Evenings, well kept", body: barBody, image: "/images/hotel-bar.jpg", alt: "Premium bar at Vela" },
   ];
 
   return (
@@ -34,7 +34,7 @@ export default async function DinePage() {
         eyebrow="Dine"
         title="Gather at the table"
         intro="Three venues, one goal — shared plates and unhurried conversations. Menu, seating and operating hours are confirmed by our team."
-        image="/images/dining.svg"
+        image="/images/hotel-restaurant.jpg"
         imageAlt="Dining at Vela by Svasti"
       />
 

@@ -12,8 +12,8 @@ interface MediaImageProps {
 }
 
 /**
- * Local SVGs (our placeholders) are served unoptimized via <img>.
- * Everything else goes through next/image for responsive, compressed delivery.
+ * Local SVGs are served unoptimized via <img>. Everything else goes through
+ * next/image for responsive, compressed delivery (WebP/AVIF where supported).
  */
 export function MediaImage({
   src,
@@ -26,8 +26,9 @@ export function MediaImage({
   height,
 }: MediaImageProps) {
   const isSvg = src.toLowerCase().endsWith(".svg");
+  const useFill = fill || (!width && !height);
 
-  if (isSvg || (fill === false && (!width || !height))) {
+  if (isSvg) {
     return (
       <img
         src={src}
@@ -45,13 +46,12 @@ export function MediaImage({
     <Image
       src={src}
       alt={alt}
-      sizes={sizes}
+      sizes={sizes ?? "100vw"}
       className={className}
       priority={priority}
-      fill={fill}
-      width={width}
-      height={height}
-      quality={82}
+      fill={useFill}
+      width={useFill ? undefined : width}
+      height={useFill ? undefined : height}
     />
   );
 }

@@ -45,7 +45,7 @@ export default async function EventsPage() {
         eyebrow="Events"
         title="Occasions, celebrated"
         intro={body}
-        image="/images/events.svg"
+        image="/images/hotel-events.jpg"
         imageAlt="Banquet and events at Vela by Svasti"
       />
 
@@ -99,8 +99,8 @@ export default async function EventsPage() {
                 </li>
               ))}
             </ol>
-            <div className="mt-10 aspect-[16/10] overflow-hidden">
-              <MediaImage src="/images/gallery-events.svg" alt="Event space at Vela by Svasti" className="h-full w-full object-cover" />
+            <div className="relative mt-10 aspect-[16/10] overflow-hidden">
+              <MediaImage src="/images/hotel-events.jpg" alt="Event space at Vela by Svasti" className="h-full w-full object-cover" />
             </div>
           </aside>
         </div>

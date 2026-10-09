@@ -43,7 +43,7 @@ export default async function OffersPage() {
                   <article className="flex h-full flex-col border border-line bg-white">
                     <div className="relative aspect-[16/10] overflow-hidden">
                       <MediaImage
-                        src={offer.imageUrl || "/images/gallery-exterior.svg"}
+                        src={offer.imageUrl || "/images/hotel-exterior.jpg"}
                         alt={offer.name}
                         className="h-full w-full object-cover"
                       />

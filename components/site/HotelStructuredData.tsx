@@ -14,7 +14,7 @@ export async function HotelStructuredData() {
       "Stay at a contemporary lifestyle hotel in VIP Chowk, Raipur. Enjoy comfortable rooms, fine dining, wellness, and celebration venues, all under one roof.",
     url: SITE_URL,
     // TODO: Replace with a real property photograph (absolute URL) once available.
-    image: `${SITE_URL}/images/hero.svg`,
+    image: `${SITE_URL}/images/hotel-exterior.jpg`,
     slogan: "Stay. Dine. Unwind. Celebrate. Your lifestyle hotel in the heart of Raipur.",
     address: {
       "@type": "PostalAddress",

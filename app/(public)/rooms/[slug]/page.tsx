@@ -43,7 +43,7 @@ export default async function RoomDetailPage({ params }: PageProps) {
 
   if (!room || !room.active) notFound();
 
-  const heroImage = room.images[0] ?? { url: "/images/room-deluxe.svg", alt: `${room.name} placeholder` };
+  const heroImage = room.images[0] ?? { url: "/images/hotel-room-teal.jpg", alt: room.name };
   const gallery = room.images.length > 1 ? room.images.slice(1) : [];
 
   const specifications = [
@@ -107,7 +107,7 @@ export default async function RoomDetailPage({ params }: PageProps) {
                 <p className="eyebrow mb-5">Gallery</p>
                 <div className="grid grid-cols-2 gap-4">
                   {gallery.map((image, index) => (
-                    <div key={image.id} className="aspect-[4/3] overflow-hidden">
+                    <div key={image.id} className="relative aspect-[4/3] overflow-hidden">
                       <MediaImage
                         src={image.url}
                         alt={image.alt || `${room.name} view ${index + 2}`}

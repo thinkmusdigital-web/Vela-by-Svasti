@@ -38,9 +38,10 @@ export function SettingsEditor({
     setMessage(null);
     try {
       const contactItems = contact.map((item) => ({ key: item.key, value: values[item.key] ?? "" }));
-      const systemItems = system
-        .filter((item) => item.key !== "enquiry_counter")
-        .map((item) => ({ key: item.key, value: values[item.key] ?? item.value }));
+      const systemItems = system.map((item) => ({
+        key: item.key,
+        value: values[item.key] ?? item.value,
+      }));
 
       const [a, b] = await Promise.all([
         fetch("/api/content", {

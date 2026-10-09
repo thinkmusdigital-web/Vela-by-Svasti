@@ -5,7 +5,7 @@ export interface AdminNavItem {
   href: string;
   label: string;
   group: string;
-  /** null → visibility decided by the caller (e.g. enquiry scopes) */
+  /** Permission required to see the item, or null when visibility is custom. */
   permission: Parameters<typeof can>[1] | null;
   visible: (user: NonNullable<Awaited<ReturnType<typeof getCurrentUser>>>) => boolean;
 }
@@ -22,13 +22,6 @@ export const ADMIN_NAV: AdminNavItem[] = [
     group: "Overview",
     permission: "dashboard.view",
     visible: allow("dashboard.view"),
-  },
-  {
-    href: "/admin/enquiries",
-    label: "Enquiries",
-    group: "Operations",
-    permission: null,
-    visible: (user) => can(user, "enquiry.viewAll") || can(user, "enquiry.viewAssigned"),
   },
   {
     href: "/admin/rooms",

@@ -285,11 +285,11 @@ export default async function HomePage() {
           </div>
           <Reveal className="order-1 lg:order-2">
             <div className="grid grid-cols-2 gap-4">
-              <div className="aspect-[3/4] overflow-hidden">
-                <MediaImage src="/images/spa.svg" alt="Spa at Vela by Svasti" className="h-full w-full object-cover" />
+              <div className="group aspect-[3/4] overflow-hidden">
+                <MediaImage src="/images/spa.svg" alt="Spa at Vela by Svasti" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
               </div>
-              <div className="mt-10 aspect-[3/4] overflow-hidden">
-                <MediaImage src="/images/gym.svg" alt="Gym at Vela by Svasti" className="h-full w-full object-cover" />
+              <div className="group mt-10 aspect-[3/4] overflow-hidden">
+                <MediaImage src="/images/gym.svg" alt="Gym at Vela by Svasti" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
               </div>
             </div>
           </Reveal>

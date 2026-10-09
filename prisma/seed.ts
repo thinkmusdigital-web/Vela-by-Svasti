@@ -6,9 +6,9 @@ const prisma = new PrismaClient();
 
 const ROLES = [
   { name: "SUPER_ADMIN", description: "Full access to every module, users and settings." },
-  { name: "HOTEL_MANAGER", description: "Enquiries, reports, rooms, room types and offers." },
-  { name: "RESERVATION_STAFF", description: "All enquiries, follow-ups and quotations." },
-  { name: "SALES_STAFF", description: "Enquiries assigned to them only." },
+  { name: "HOTEL_MANAGER", description: "Rooms, room types and offers." },
+  { name: "RESERVATION_STAFF", description: "Dashboard access. Website enquiries arrive in Google Sheets." },
+  { name: "SALES_STAFF", description: "Dashboard access. Website enquiries arrive in Google Sheets." },
   { name: "CONTENT_MANAGER", description: "Website content, gallery and offers." },
 ];
 
@@ -427,20 +427,6 @@ async function main() {
         group: entry.group,
         type: entry.type ?? "text",
       },
-    });
-  }
-
-  // Settings
-  const settings = [
-    { key: "enquiry_counter", value: "0", label: "Enquiry ID counter (system)", group: "System", type: "number" },
-    { key: "enquiry_acknowledgement_enabled", value: "false", label: "Send customer acknowledgement email", group: "Enquiries", type: "boolean" },
-    { key: "staff_notification_enabled", value: "false", label: "Email new enquiries to staff", group: "Enquiries", type: "boolean" },
-  ];
-  for (const setting of settings) {
-    await prisma.setting.upsert({
-      where: { key: setting.key },
-      update: {},
-      create: setting,
     });
   }
 

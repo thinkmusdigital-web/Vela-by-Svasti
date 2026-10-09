@@ -1,57 +1,6 @@
 // Shared domain constants. Stored as plain strings in the database so the
 // schema stays portable between SQLite and PostgreSQL.
 
-export const ENQUIRY_STATUS = {
-  NEW: "NEW",
-  CONTACTED: "CONTACTED",
-  FOLLOW_UP: "FOLLOW_UP",
-  QUOTATION_SENT: "QUOTATION_SENT",
-  CONVERTED: "CONVERTED",
-  LOST: "LOST",
-  CLOSED: "CLOSED",
-} as const;
-
-export type EnquiryStatus = (typeof ENQUIRY_STATUS)[keyof typeof ENQUIRY_STATUS];
-
-export const ENQUIRY_STATUS_LABELS: Record<EnquiryStatus, string> = {
-  NEW: "New",
-  CONTACTED: "Contacted",
-  FOLLOW_UP: "Follow-up",
-  QUOTATION_SENT: "Quotation sent",
-  CONVERTED: "Converted",
-  LOST: "Lost",
-  CLOSED: "Closed",
-};
-
-export const ENQUIRY_STATUSES = Object.values(ENQUIRY_STATUS);
-
-export const OPEN_STATUSES: EnquiryStatus[] = [
-  ENQUIRY_STATUS.NEW,
-  ENQUIRY_STATUS.CONTACTED,
-  ENQUIRY_STATUS.FOLLOW_UP,
-  ENQUIRY_STATUS.QUOTATION_SENT,
-];
-
-export const CALL_STATUS = {
-  PENDING_CALL: "PENDING_CALL",
-  CALLED: "CALLED",
-  NO_ANSWER: "NO_ANSWER",
-  CALL_BACK_REQUESTED: "CALL_BACK_REQUESTED",
-  NOT_INTERESTED: "NOT_INTERESTED",
-} as const;
-
-export type CallStatus = (typeof CALL_STATUS)[keyof typeof CALL_STATUS];
-
-export const CALL_STATUS_LABELS: Record<CallStatus, string> = {
-  PENDING_CALL: "Pending call",
-  CALLED: "Called",
-  NO_ANSWER: "No answer",
-  CALL_BACK_REQUESTED: "Call back requested",
-  NOT_INTERESTED: "Not interested",
-};
-
-export const CALL_STATUSES = Object.values(CALL_STATUS);
-
 export const ROLES = {
   SUPER_ADMIN: "SUPER_ADMIN",
   HOTEL_MANAGER: "HOTEL_MANAGER",
@@ -72,9 +21,9 @@ export const ROLE_LABELS: Record<RoleName, string> = {
 
 export const ROLE_DESCRIPTIONS: Record<RoleName, string> = {
   SUPER_ADMIN: "Full access to every module, users and settings.",
-  HOTEL_MANAGER: "Enquiries, reports, rooms, room types and offers.",
-  RESERVATION_STAFF: "All enquiries, follow-ups and quotations.",
-  SALES_STAFF: "Enquiries assigned to them only.",
+  HOTEL_MANAGER: "Rooms, room types and offers.",
+  RESERVATION_STAFF: "Dashboard access. Website enquiries arrive in Google Sheets.",
+  SALES_STAFF: "Dashboard access. Website enquiries arrive in Google Sheets.",
   CONTENT_MANAGER: "Website content, gallery and offers.",
 };
 

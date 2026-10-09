@@ -30,9 +30,6 @@ model User {
   lastLoginAt      DateTime?
   createdAt        DateTime              @default(now())
   updatedAt        DateTime              @updatedAt
-  assignedEnquiries Enquiry[]            @relation("AssignedStaff")
-  followups        EnquiryFollowup[]
-  activityLogs     EnquiryActivityLog[]
 }
 
 model RoomType {
@@ -54,7 +51,6 @@ model RoomType {
   amenities        RoomAmenity[]
   rooms            Room[]
   offers           Offer[]
-  enquiries        Enquiry[]
 }
 
 model RoomImage {
@@ -144,82 +140,4 @@ model Setting {
   type  String @default("text")
 }
 
-model Enquiry {
-  id                 Int                  @id @default(autoincrement())
-  enquiryId          String               @unique
-  enquiryType        String               @default("STAY") // STAY | EVENT | GENERAL
-  customerName       String
-  mobileNumber       String
-  email              String
-  checkInDate        DateTime?
-  checkOutDate       DateTime?
-  adults             Int                  @default(1)
-  children           Int                  @default(0)
-  roomTypeId         String?
-  roomType           RoomType?            @relation(fields: [roomTypeId], references: [id], onDelete: SetNull)
-  numberOfRooms      Int                  @default(1)
-  purposeOfStay      String?
-  specialRequest     String?
-  preferredContact   String               @default("PHONE") // PHONE | WHATSAPP | EMAIL
-  source             String               @default("Website")
-  companyName        String?
-  eventType          String?
-  expectedGuests     Int?
-  approximateBudget  String?
-  preferredCallTime  String?
-  assignedStaffId    String?
-  assignedStaff      User?                @relation("AssignedStaff", fields: [assignedStaffId], references: [id], onDelete: SetNull)
-  callStatus         String               @default("PENDING_CALL") // PENDING_CALL CALLED NO_ANSWER CALL_BACK_REQUESTED NOT_INTERESTED
-  followUpDate       DateTime?
-  customerResponse   String?
-  quotationAmount    Float?
-  finalStatus        String               @default("NEW") // NEW CONTACTED FOLLOW_UP QUOTATION_SENT CONVERTED LOST CLOSED
-  remarks            String?
-  lastContactedAt    DateTime?
-  isPossibleDuplicate Boolean             @default(false)
-  duplicateOfId      Int?
-  createdByIp        String?
-  deletedAt          DateTime?
-  createdAt          DateTime             @default(now())
-  updatedAt          DateTime             @updatedAt
-  followups          EnquiryFollowup[]
-  activityLogs       EnquiryActivityLog[]
 
-  @@index([enquiryId])
-  @@index([mobileNumber])
-  @@index([email])
-  @@index([checkInDate])
-  @@index([followUpDate])
-  @@index([finalStatus])
-  @@index([assignedStaffId])
-  @@index([createdAt])
-}
-
-model EnquiryFollowup {
-  id              String    @id @default(cuid())
-  enquiryId       Int
-  enquiry         Enquiry   @relation(fields: [enquiryId], references: [id], onDelete: Cascade)
-  note            String    @default("")
-  followUpDate    DateTime?
-  completedAt     DateTime?
-  createdByUserId String?
-  createdBy       User?     @relation(fields: [createdByUserId], references: [id], onDelete: SetNull)
-  createdAt       DateTime  @default(now())
-  @@index([enquiryId])
-  @@index([followUpDate])
-}
-
-model EnquiryActivityLog {
-  id         String   @id @default(cuid())
-  enquiryId  Int
-  enquiry    Enquiry  @relation(fields: [enquiryId], references: [id], onDelete: Cascade)
-  userId     String?
-  user       User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
-  userLabel  String   @default("")
-  action     String
-  oldValue   String?
-  newValue   String?
-  createdAt  DateTime @default(now())
-  @@index([enquiryId])
-  @@index([createdAt])
-}

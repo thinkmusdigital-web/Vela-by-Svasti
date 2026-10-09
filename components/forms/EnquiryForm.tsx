@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useId, useState, type FormEvent, type ReactNode } from "react";
+import { useId, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { enquiryInputSchema, type EnquiryInput } from "@/lib/validate";
 import { EVENT_TYPE_LABELS, EVENT_TYPES, PREFERRED_CONTACTS, PURPOSES_OF_STAY, PURPOSE_LABELS } from "@/lib/constants";
 
@@ -56,9 +56,14 @@ export function EnquiryForm({
   const [submitting, setSubmitting] = useState(false);
   const [showOptional, setShowOptional] = useState(false);
   const [website, setWebsite] = useState("");
+  // Synchronous guard: React state updates are async, so a fast double-click
+  // could slip a second submit through before `submitting` re-renders.
+  const submittingRef = useRef(false);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (submittingRef.current) return;
+    submittingRef.current = true;
     setGeneralError(null);
     setSubmitting(true);
 
@@ -88,6 +93,7 @@ export function EnquiryForm({
     const parsed = enquiryInputSchema.safeParse(raw);
 
     if (!parsed.success) {
+      submittingRef.current = false;
       setSubmitting(false);
       setFieldErrors(
         Object.fromEntries(
@@ -148,6 +154,7 @@ export function EnquiryForm({
         "Something went wrong while submitting your enquiry. Please try again or contact us directly.",
       );
     } finally {
+      submittingRef.current = false;
       setSubmitting(false);
     }
   }

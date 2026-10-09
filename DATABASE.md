@@ -11,9 +11,10 @@ change (no enums, no `Json` columns, no scalar arrays — constants live in
 - `prisma/schema.prisma`: `datasource db { provider = "sqlite" }`
 - `DATABASE_URL="file:./dev.db"` (see `.env.example`)
 - Commands: `npm run db:migrate` (dev), `npm run db:deploy` (apply), `npm run db:seed`
-- The enquiry counter uses a single raw `UPDATE "Setting" … RETURNING` statement
-  (`lib/enquiry.ts`). `UPDATE … RETURNING` is supported by both SQLite and
-  PostgreSQL, so it migrates unchanged.
+- Customer enquiries are **no longer stored in the database** — the website
+  forwards them to a Google Apps Script endpoint that writes to Google Sheets
+  (see `docs/GOOGLE_SHEETS_INTEGRATION.md`). The database keeps site content,
+  rooms, offers, gallery and admin users only.
 
 ## Switching to PostgreSQL (launch checklist)
 
@@ -39,12 +40,10 @@ change (no enums, no `Json` columns, no scalar arrays — constants live in
 ## Smoke test after switching
 
 - `npm run typecheck && npm run build`
-- Start the server, POST a valid enquiry to `/api/enquiries` → expect `201` and a
-  row in the `Enquiry` table.
-- Confirm the counter: submitting N enquiries yields sequential `ENQ-…` ids.
-- Confirm dates round-trip: `checkInDate`/`checkOutDate`/`followUpDate` store and
-  read back as calendar days.
-- Confirm the dashboard, enquiry list, filters and XLSX export all load.
+- Start the server, POST a valid enquiry to `/api/enquiries` → expect `201`.
+  The data is written to Google Sheets via the Apps Script endpoint, not to a
+  database table.
+- Confirm the admin dashboard and content pages (rooms, offers, gallery) load.
 
 ## Portability guard
 

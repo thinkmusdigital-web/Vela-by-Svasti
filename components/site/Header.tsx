@@ -57,7 +57,7 @@ export function Header() {
   }, [experienceOpen]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-cream/90 backdrop-blur">
+    <header className="border-b border-line bg-cream/90 backdrop-blur">
       <div className="shell flex h-16 items-center justify-between gap-6">
         <Link href="/" aria-label="Vela by Svasti — home" className="flex shrink-0 items-center">
           <Logo variant="dark" layout="wordmark" height={38} priority />
@@ -72,8 +72,10 @@ export function Header() {
                   key={item.href}
                   href={item.href}
                   aria-current={active ? "page" : undefined}
-                  className={`text-[0.7rem] font-semibold uppercase tracking-[0.14em] transition-colors hover:text-brass-deep ${
-                    active ? "text-brass-deep" : "text-ink/80"
+                  className={`text-[0.7rem] font-semibold uppercase tracking-[0.14em] transition-colors ${
+                    active
+                      ? "underline underline-offset-8 text-brass-deep"
+                      : "text-ink/80 hover:text-brass-deep"
                   }`}
                 >
                   {item.label}
@@ -101,8 +103,10 @@ export function Header() {
                   aria-haspopup="menu"
                   aria-expanded={experienceOpen}
                   aria-controls="experience-menu"
-                  className={`flex items-center gap-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.14em] transition-colors hover:text-brass-deep ${
-                    experienceActive ? "text-brass-deep" : "text-ink/80"
+                  className={`flex items-center gap-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.14em] transition-colors ${
+                    experienceActive
+                      ? "underline underline-offset-8 text-brass-deep"
+                      : "text-ink/80 hover:text-brass-deep"
                   }`}
                 >
                   {item.label}
@@ -186,7 +190,7 @@ export function Header() {
           >
             Admin Login
           </Link>
-          <Link href="/enquire" className="btn-primary hidden px-5 py-2.5 sm:inline-flex">
+          <Link href="/enquire" className="btn-brass hidden px-5 py-2.5 sm:inline-flex">
             Enquire Now
           </Link>
           <button

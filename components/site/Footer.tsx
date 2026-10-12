@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getContactDetails, getContentValue } from "@/lib/content";
 import { EXPERIENCE_MENU } from "@/lib/constants";
+import { Logo } from "@/components/site/Logo";
 
 export async function Footer() {
   const contact = await getContactDetails();
@@ -15,10 +16,7 @@ export async function Footer() {
     <footer className="border-t border-line bg-sand">
       <div className="shell grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-5">
         <div className="lg:pr-6">
-          <p className="font-display text-2xl font-medium tracking-[0.08em] text-ink">VELA</p>
-          <p className="mt-1 text-[0.6rem] font-semibold uppercase tracking-[0.42em] text-brass-deep">
-            by Svasti
-          </p>
+          <Logo variant="dark" layout="full" height={136} />
           <p className="display mt-6 text-[1.6rem] text-ink">{tagline}</p>
           <p className="mt-3 max-w-sm text-[0.9rem] leading-relaxed text-stone">
             Contemporary lifestyle hospitality at VIP Chowk, Raipur — stays, dining, wellness and

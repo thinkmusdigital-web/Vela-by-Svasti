@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { PRIMARY_NAV, EXPERIENCE_MENU, EXPERIENCE_PATHS } from "@/lib/constants";
+import { Logo } from "@/components/site/Logo";
 
 const isPathActive = (pathname: string, href: string) =>
   href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
@@ -58,13 +59,8 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-cream/90 backdrop-blur">
       <div className="shell flex h-16 items-center justify-between gap-6">
-        <Link href="/" className="flex flex-col leading-none" aria-label="Vela by Svasti — home">
-          <span className="font-display text-[1.45rem] font-medium tracking-[0.08em] text-ink">
-            VELA
-          </span>
-          <span className="mt-0.5 text-[0.55rem] font-semibold uppercase tracking-[0.42em] text-brass-deep">
-            by Svasti
-          </span>
+        <Link href="/" aria-label="Vela by Svasti — home" className="flex shrink-0 items-center">
+          <Logo variant="dark" layout="wordmark" height={38} priority />
         </Link>
 
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">

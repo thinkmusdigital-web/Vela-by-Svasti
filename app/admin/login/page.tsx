@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { getCurrentUser } from "@/lib/auth";
 import { LoginForm } from "@/components/admin/login-form";
+import { Logo } from "@/components/site/Logo";
 
 export const metadata = { title: "Staff login — Vela by Svasti" };
 
@@ -19,10 +20,7 @@ export default async function AdminLoginPage({ searchParams }: PageProps) {
     <main className="flex min-h-screen items-center justify-center bg-cream px-5">
       <div className="w-full max-w-md">
         <Link href="/" className="block text-center">
-          <span className="display text-3xl text-ink">Vela</span>
-          <span className="mt-1 block text-[0.65rem] uppercase tracking-[0.32em] text-fog">
-            by Svasti · Staff
-          </span>
+          <Logo variant="dark" layout="full" height={72} priority className="mx-auto" />
         </Link>
         <div className="mt-8 border border-line bg-white p-8">
           <p className="label-field">Sign in</p>

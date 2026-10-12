@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { navItemsForUser } from "@/lib/admin-nav";
 import { LogoutButton } from "@/components/admin/logout-button";
+import { Logo } from "@/components/site/Logo";
 import type { AdminUser } from "@/lib/admin-guard";
 
 export function AdminShell({ user, children }: { user: AdminUser; children: React.ReactNode }) {
@@ -10,8 +11,7 @@ export function AdminShell({ user, children }: { user: AdminUser; children: Reac
     <div className="min-h-screen bg-cream">
       <aside className="fixed inset-y-0 left-0 z-30 flex w-60 flex-col border-r border-line bg-white">
         <Link href="/admin" className="block border-b border-line px-6 py-5">
-          <span className="display text-2xl text-ink">Vela</span>
-          <span className="block text-[0.6rem] uppercase tracking-[0.28em] text-fog">by Svasti · Staff</span>
+          <Logo variant="dark" layout="wordmark" height={34} />
         </Link>
         <nav className="flex-1 overflow-y-auto py-4" aria-label="Admin">
           {Object.entries(

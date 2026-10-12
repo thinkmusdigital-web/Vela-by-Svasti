@@ -38,7 +38,7 @@ export default function CancellationRefundPage() {
   return (
     <>
       <header className="bg-sand">
-        <div className="shell py-14 sm:py-20">
+        <div className="shell pt-16 pb-14 sm:py-20">
           <p className="eyebrow">Legal</p>
           <h1 className="display mt-4 max-w-3xl text-[clamp(2.4rem,5.5vw,4rem)] text-ink">
             Cancellation / Refund Policy

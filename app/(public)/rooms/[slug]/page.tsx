@@ -55,7 +55,7 @@ export default async function RoomDetailPage({ params }: PageProps) {
   return (
     <>
       <header className="bg-sand">
-        <div className="shell py-12 sm:py-16">
+        <div className="shell pt-16 pb-12 sm:py-16">
           <nav aria-label="Breadcrumb" className="mb-4">
             <Link href="/rooms" className="eyebrow hover:text-ink">
               ← Stay / Rooms

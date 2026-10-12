@@ -13,17 +13,32 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const [mobileExpand, setMobileExpand] = useState(false);
   const [experienceOpen, setExperienceOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const dropdownRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
 
   const experienceActive = EXPERIENCE_PATHS.some((path) => isPathActive(pathname, path));
 
+  // The header floats over the page. Its resting state is transparent so the
+  // hero media shows behind it; once the user scrolls it settles onto a
+  // translucent cream surface. On the home hero (dark full-bleed media at the
+  // top) the artwork and nav flip to their light variants while overlaying it.
+  const overHomeHero = pathname === "/" && !scrolled;
+  const darkSurface = open || overHomeHero;
+
   useEffect(() => {
     setOpen(false);
     setMobileExpand(false);
     setExperienceOpen(false);
   }, [pathname]);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 16);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -57,10 +72,18 @@ export function Header() {
   }, [experienceOpen]);
 
   return (
-    <header className="border-b border-line bg-cream/90 backdrop-blur">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
+        open
+          ? "bg-ink"
+          : scrolled
+            ? "border-b border-line bg-cream/90 backdrop-blur"
+            : "bg-transparent"
+      }`}
+    >
       <div className="shell flex h-16 items-center justify-between gap-6">
         <Link href="/" aria-label="Vela by Svasti — home" className="flex shrink-0 items-center">
-          <Logo variant="dark" layout="wordmark" height={38} priority />
+          <Logo variant={darkSurface ? "light" : "dark"} layout="wordmark" height={38} priority />
         </Link>
 
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
@@ -74,8 +97,12 @@ export function Header() {
                   aria-current={active ? "page" : undefined}
                   className={`text-[0.7rem] font-semibold uppercase tracking-[0.14em] transition-colors ${
                     active
-                      ? "underline underline-offset-8 text-brass-deep"
-                      : "text-ink/80 hover:text-brass-deep"
+                      ? `underline underline-offset-8 ${
+                          darkSurface ? "text-brass" : "text-brass-deep"
+                        }`
+                      : darkSurface
+                        ? "text-cream/85 hover:text-cream"
+                        : "text-ink/80 hover:text-brass-deep"
                   }`}
                 >
                   {item.label}
@@ -105,8 +132,12 @@ export function Header() {
                   aria-controls="experience-menu"
                   className={`flex items-center gap-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.14em] transition-colors ${
                     experienceActive
-                      ? "underline underline-offset-8 text-brass-deep"
-                      : "text-ink/80 hover:text-brass-deep"
+                      ? `underline underline-offset-8 ${
+                          darkSurface ? "text-brass" : "text-brass-deep"
+                        }`
+                      : darkSurface
+                        ? "text-cream/85 hover:text-cream"
+                        : "text-ink/80 hover:text-brass-deep"
                   }`}
                 >
                   {item.label}
@@ -186,7 +217,9 @@ export function Header() {
           <Link
             href="/admin/login"
             aria-label="Admin login — hotel staff only"
-            className="hidden text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-fog transition-colors hover:text-ink lg:inline-flex"
+            className={`hidden text-[0.7rem] font-semibold uppercase tracking-[0.14em] transition-colors lg:inline-flex ${
+              darkSurface ? "text-cream/60 hover:text-cream" : "text-fog hover:text-ink"
+            }`}
           >
             Admin Login
           </Link>
@@ -199,14 +232,24 @@ export function Header() {
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label={open ? "Close menu" : "Open menu"}
-            className="inline-flex h-10 w-10 flex-col items-center justify-center gap-[5px] border border-line bg-white lg:hidden"
+            className={`inline-flex h-10 w-10 flex-col items-center justify-center gap-[5px] border transition-colors lg:hidden ${
+              darkSurface ? "border-cream/25 bg-transparent" : "border-line bg-white"
+            }`}
           >
             <span
-              className={`h-px w-5 bg-ink transition-transform ${open ? "translate-y-[3px] rotate-45" : ""}`}
+              className={`h-px w-5 transition-transform ${darkSurface ? "bg-cream" : "bg-ink"} ${
+                open ? "translate-y-[3px] rotate-45" : ""
+              }`}
             />
-            <span className={`h-px w-5 bg-ink transition-opacity ${open ? "opacity-0" : ""}`} />
             <span
-              className={`h-px w-5 bg-ink transition-transform ${open ? "-translate-y-[9px] -rotate-45" : ""}`}
+              className={`h-px w-5 transition-opacity ${darkSurface ? "bg-cream" : "bg-ink"} ${
+                open ? "opacity-0" : ""
+              }`}
+            />
+            <span
+              className={`h-px w-5 transition-transform ${darkSurface ? "bg-cream" : "bg-ink"} ${
+                open ? "-translate-y-[9px] -rotate-45" : ""
+              }`}
             />
           </button>
         </div>

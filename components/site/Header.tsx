@@ -201,15 +201,6 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-4 lg:gap-5">
-          <Link
-            href="/admin/login"
-            aria-label="Admin login — hotel staff only"
-            className={`hidden text-[0.7rem] font-semibold uppercase tracking-[0.14em] transition-colors lg:inline-flex ${
-              darkSurface ? "text-cream/60 hover:text-cream" : "text-fog hover:text-ink"
-            }`}
-          >
-            Admin Login
-          </Link>
           <Link href="/enquire" className="btn-brass hidden px-5 py-2.5 sm:inline-flex">
             Enquire Now
           </Link>
@@ -331,14 +322,6 @@ export function Header() {
               </Link>
             );
           })}
-
-          <Link
-            href="/admin/login"
-            onClick={() => setOpen(false)}
-            className="mt-6 text-[0.8rem] font-semibold uppercase tracking-[0.2em] text-cream/60 transition-colors hover:text-cream"
-          >
-            Admin Login
-          </Link>
 
           <div className="mt-6 flex flex-col gap-3">
             <Link href="/enquire" onClick={() => setOpen(false)} className="btn-brass w-full">

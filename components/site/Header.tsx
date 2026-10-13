@@ -13,32 +13,23 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const [mobileExpand, setMobileExpand] = useState(false);
   const [experienceOpen, setExperienceOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const dropdownRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
 
   const experienceActive = EXPERIENCE_PATHS.some((path) => isPathActive(pathname, path));
 
-  // The header floats over the page. Its resting state is transparent so the
-  // hero media shows behind it; once the user scrolls it settles onto a
-  // translucent cream surface. On the home hero (dark full-bleed media at the
-  // top) the artwork and nav flip to their light variants while overlaying it.
-  const overHomeHero = pathname === "/" && !scrolled;
-  const darkSurface = open || overHomeHero;
+  // The header is positioned at the top of the page over the hero and scrolls
+  // away with the content — it is never fixed to the viewport. On the home
+  // hero (dark full-bleed media at the top) the artwork and nav flip to their
+  // light variants so they stay readable over the dark media.
+  const darkSurface = open || pathname === "/";
 
   useEffect(() => {
     setOpen(false);
     setMobileExpand(false);
     setExperienceOpen(false);
   }, [pathname]);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -73,12 +64,8 @@ export function Header() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-        open
-          ? "bg-ink"
-          : scrolled
-            ? "border-b border-line bg-cream/90 backdrop-blur"
-            : "bg-transparent"
+      className={`absolute inset-x-0 top-0 z-50 transition-colors duration-300 ${
+        open ? "bg-ink" : "bg-transparent"
       }`}
     >
       <div className="shell flex h-16 items-center justify-between gap-6">

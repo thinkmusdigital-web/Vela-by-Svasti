@@ -17,10 +17,16 @@ export function RoomCard({ room }: { room: RoomCardRoom }) {
   return (
     <article className="group flex flex-col border border-line bg-white">
       <div className="relative aspect-[4/3] overflow-hidden">
-        <Link href={`/rooms/${room.slug}`} tabIndex={-1} aria-hidden="true">
+        <Link
+          href={`/rooms/${room.slug}`}
+          tabIndex={-1}
+          aria-hidden="true"
+          className="relative block h-full w-full"
+        >
           <MediaImage
             src={image.url}
             alt={image.alt || room.name}
+            sizes="(min-width: 1400px) 425px, (min-width: 1024px) calc((100vw - 132px) / 3), (min-width: 640px) calc((100vw - 100px) / 2), 100vw"
             className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
           />
         </Link>

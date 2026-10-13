@@ -20,7 +20,13 @@ export function PageHero({ eyebrow, title, intro, image, imageAlt }: PageHeroPro
         <div className="border-t border-line">
           <div className="shell pb-8">
             <div className="relative aspect-[21/9] overflow-hidden">
-              <MediaImage src={image} alt={imageAlt ?? title} className="h-full w-full object-cover" priority />
+              <MediaImage
+                src={image}
+                alt={imageAlt ?? title}
+                sizes="(min-width: 1400px) 1344px, calc(100vw - 64px)"
+                className="h-full w-full object-cover"
+                priority
+              />
             </div>
           </div>
         </div>

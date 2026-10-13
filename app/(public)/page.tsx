@@ -188,6 +188,7 @@ export default async function HomePage() {
               <MediaImage
                 src={aboutImage}
                 alt="About Vela by Svasti"
+                sizes="(min-width: 1400px) 645px, (min-width: 1024px) calc((100vw - 112px) / 2), 100vw"
                 className="h-full w-full object-cover"
               />
             </div>
@@ -246,6 +247,7 @@ export default async function HomePage() {
                   <MediaImage
                     src={item.image}
                     alt={`${item.label} at Vela by Svasti`}
+                    sizes="(min-width: 1400px) 430px, (min-width: 768px) calc((100vw - 112px) / 3), 100vw"
                     className="h-full w-full object-cover opacity-90 transition-transform duration-700 group-hover:scale-[1.03]"
                   />
                   <div className="absolute inset-0 bg-ink/20" />
@@ -333,7 +335,7 @@ export default async function HomePage() {
           </div>
           <Reveal>
             <div className="relative aspect-[4/3] overflow-hidden">
-              <MediaImage src="/images/hotel-events.jpg" alt="Banquet and event facilities at Vela by Svasti" className="h-full w-full object-cover" />
+              <MediaImage src="/images/hotel-events.jpg" alt="Banquet and event facilities at Vela by Svasti" sizes="(min-width: 1400px) 645px, (min-width: 1024px) calc((100vw - 112px) / 2), 100vw" className="h-full w-full object-cover" />
             </div>
           </Reveal>
         </div>
@@ -358,6 +360,7 @@ export default async function HomePage() {
                     <MediaImage
                       src={offer.imageUrl || "/images/hotel-exterior.jpg"}
                       alt={offer.name}
+                      sizes="(min-width: 1400px) 430px, (min-width: 768px) calc((100vw - 112px) / 3), 100vw"
                       className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                     />
                   </div>
@@ -436,7 +439,7 @@ export default async function HomePage() {
                 href="/gallery"
                 className="relative aspect-[4/3] w-72 shrink-0 overflow-hidden"
               >
-                <MediaImage src={image.url} alt={image.alt} className="h-full w-full object-cover" />
+                <MediaImage src={image.url} alt={image.alt} sizes="288px" className="h-full w-full object-cover" />
               </Link>
             ))}
           </div>
@@ -453,7 +456,7 @@ export default async function HomePage() {
         <div className="shell grid items-center gap-12 py-20 lg:grid-cols-2 lg:py-28">
           <Reveal>
             <div className="relative aspect-[16/9] overflow-hidden">
-              <MediaImage src="/images/hotel-exterior.jpg" alt="Vela by Svasti at VIP Chowk, Raipur" className="h-full w-full object-cover" />
+              <MediaImage src="/images/hotel-exterior.jpg" alt="Vela by Svasti at VIP Chowk, Raipur" sizes="(min-width: 1400px) 645px, (min-width: 1024px) calc((100vw - 112px) / 2), 100vw" className="h-full w-full object-cover" />
             </div>
           </Reveal>
           <div>

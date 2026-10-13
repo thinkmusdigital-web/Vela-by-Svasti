@@ -84,7 +84,7 @@ export default async function LocationPage() {
               </div>
             ) : (
               <div className="relative aspect-[4/3] overflow-hidden border border-line bg-sand">
-                <MediaImage src="/images/hotel-exterior.jpg" alt="Vela by Svasti — VIP Chowk, Raipur" className="h-full w-full object-cover" />
+                <MediaImage src="/images/hotel-exterior.jpg" alt="Vela by Svasti — VIP Chowk, Raipur" sizes="(min-width: 1400px) 755px, (min-width: 1024px) calc((100vw - 112px) * 0.583), 100vw" className="h-full w-full object-cover" />
                 <div className="absolute inset-x-0 bottom-0 bg-ink/85 p-5">
                   <p className="text-[0.85rem] text-cream">
                     A Google Map will appear here once the embed link is added in Admin → Website

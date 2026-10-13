@@ -46,7 +46,7 @@ export default async function DinePage() {
               className={`grid items-center gap-10 lg:grid-cols-2 ${index % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""}`}
             >
               <div className="relative aspect-[4/3] overflow-hidden">
-                <MediaImage src={venue.image} alt={venue.alt} className="h-full w-full object-cover" />
+                <MediaImage src={venue.image} alt={venue.alt} sizes="(min-width: 1400px) 650px, (min-width: 1024px) calc((100vw - 104px) / 2), 100vw" className="h-full w-full object-cover" />
               </div>
               <div>
                 <SectionHeading eyebrow={venue.eyebrow} title={venue.title} body={venue.body} />

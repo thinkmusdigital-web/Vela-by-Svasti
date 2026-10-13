@@ -75,6 +75,7 @@ export default async function RoomDetailPage({ params }: PageProps) {
               <MediaImage
                 src={heroImage.url}
                 alt={heroImage.alt || room.name}
+                sizes="(min-width: 1400px) 790px, (min-width: 1024px) calc((100vw - 112px) * 0.615), 100vw"
                 className="h-full w-full object-cover"
                 priority
               />
@@ -111,6 +112,7 @@ export default async function RoomDetailPage({ params }: PageProps) {
                       <MediaImage
                         src={image.url}
                         alt={image.alt || `${room.name} view ${index + 2}`}
+                        sizes="(min-width: 1400px) 390px, (min-width: 1024px) calc((100vw - 128px) * 0.3), 100vw"
                         className="h-full w-full object-cover"
                       />
                     </div>

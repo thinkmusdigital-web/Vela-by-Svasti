@@ -45,6 +45,7 @@ export default async function OffersPage() {
                       <MediaImage
                         src={offer.imageUrl || "/images/hotel-exterior.jpg"}
                         alt={offer.name}
+                        sizes="(min-width: 1400px) 425px, (min-width: 1024px) calc((100vw - 132px) / 3), (min-width: 640px) calc((100vw - 100px) / 2), 100vw"
                         className="h-full w-full object-cover"
                       />
                     </div>

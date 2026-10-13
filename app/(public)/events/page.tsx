@@ -100,7 +100,7 @@ export default async function EventsPage() {
               ))}
             </ol>
             <div className="relative mt-10 aspect-[16/10] overflow-hidden">
-              <MediaImage src="/images/hotel-events.jpg" alt="Event space at Vela by Svasti" className="h-full w-full object-cover" />
+              <MediaImage src="/images/hotel-events.jpg" alt="Event space at Vela by Svasti" sizes="(min-width: 1400px) 495px, (min-width: 1024px) calc((100vw - 112px) * 0.385), 100vw" className="h-full w-full object-cover" />
             </div>
           </aside>
         </div>

@@ -64,6 +64,7 @@ export default async function WellnessPage() {
                   <MediaImage
                     src={area.image}
                     alt={area.alt}
+                    sizes="(min-width: 1400px) 640px, (min-width: 1024px) calc((100vw - 128px) / 2), 100vw"
                     className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
                   />
                   <div

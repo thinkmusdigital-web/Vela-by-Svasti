@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getContactDetails, getContentValue } from "@/lib/content";
+import { TextEffect } from "@/components/core/text-effect";
 
 export async function CtaBand() {
   const contact = await getContactDetails();
@@ -16,9 +17,15 @@ export async function CtaBand() {
           id="cta-heading"
           className="display mx-auto max-w-3xl text-[clamp(2.2rem,5vw,3.6rem)] text-cream"
         >
-          Ready for time well spent?
+          <TextEffect inView per="char">
+            Ready for time well spent?
+          </TextEffect>
         </h2>
-        <p className="mx-auto mt-6 max-w-2xl text-[1.02rem] leading-relaxed text-cream/75">{body}</p>
+        <p className="mx-auto mt-6 max-w-2xl text-[1.02rem] leading-relaxed text-cream/75">
+          <TextEffect inView per="word" stagger={26} delay={100}>
+            {body}
+          </TextEffect>
+        </p>
         <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Link href="/enquire" className="btn-brass w-full sm:w-auto">
             Enquire Now

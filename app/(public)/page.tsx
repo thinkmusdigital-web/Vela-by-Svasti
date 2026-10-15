@@ -5,6 +5,7 @@ import { SectionHeading } from "@/components/site/SectionHeading";
 import { Reveal } from "@/components/site/Reveal";
 import { CtaBand } from "@/components/site/CtaBand";
 import { RoomCard } from "@/components/site/RoomCard";
+import { TextEffect } from "@/components/core/text-effect";
 import { getContentValue, getContentJson, getContactDetails } from "@/lib/content";
 import { prisma } from "@/lib/db";
 
@@ -153,11 +154,21 @@ export default async function HomePage() {
               <span className="h-px w-10 bg-brass" aria-hidden="true" />
               {heroKicker}
             </p>
-            <h1 className="display max-w-5xl text-[clamp(2.6rem,8vw,5.8rem)] text-cream">{heroTitle}</h1>
+            <h1 className="display max-w-5xl text-[clamp(2.6rem,8vw,5.8rem)] text-cream">
+              <TextEffect per="char">
+                {heroTitle}
+              </TextEffect>
+            </h1>
             <h2 className="display mt-6 max-w-3xl text-[clamp(1.4rem,3vw,2.3rem)] italic text-cream/90">
-              {heroTagline}
+              <TextEffect per="char" stagger={12} duration={340} delay={250}>
+                {heroTagline}
+              </TextEffect>
             </h2>
-            <p className="mt-7 max-w-2xl text-[1.05rem] leading-relaxed text-cream/80">{heroSubtitle}</p>
+            <p className="mt-7 max-w-2xl text-[1.05rem] leading-relaxed text-cream/80">
+              <TextEffect per="word" stagger={18} duration={300} delay={550}>
+                {heroSubtitle}
+              </TextEffect>
+            </p>
             <div className="mt-10 flex flex-col items-start gap-3 sm:flex-row">
               <Link href="/enquire" className="btn-brass w-full sm:w-auto">
                 Enquire Now
@@ -306,9 +317,15 @@ export default async function HomePage() {
             <Reveal className="max-w-xl">
               <p className="eyebrow mb-4 text-brass">Leisure</p>
               <h2 id="home-pool" className="display text-[clamp(2.2rem,5vw,3.8rem)] text-cream">
-                The rooftop pool
+                <TextEffect inView per="char">
+                  The rooftop pool
+                </TextEffect>
               </h2>
-              <p className="mt-5 text-[1.02rem] leading-relaxed text-cream/80">{poolBody}</p>
+              <p className="mt-5 text-[1.02rem] leading-relaxed text-cream/80">
+                <TextEffect inView per="word" stagger={26} delay={100}>
+                  {poolBody}
+                </TextEffect>
+              </p>
               <div className="mt-8">
                 <Link href="/leisure" className="btn-brass">
                   Explore Leisure

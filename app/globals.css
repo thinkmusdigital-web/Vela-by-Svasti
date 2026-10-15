@@ -129,3 +129,64 @@ body {
     transform: none;
   }
 }
+
+/* Text effect — applied via the TextEffect client component (components/core/text-effect). */
+@keyframes te-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes te-blur {
+  from {
+    opacity: 0;
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes te-slide {
+  from {
+    opacity: 0;
+    transform: translateY(0.35em);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+[data-te-state="animate"] .te-unit {
+  animation-name: te-fade;
+  animation-duration: var(--te-duration, 380ms);
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  animation-fill-mode: both;
+  animation-delay: calc(var(--te-delay, 0ms) + var(--te-i, 0) * var(--te-stagger, 20ms));
+}
+
+[data-te-state="animate"][data-te-preset="blur"] .te-unit {
+  animation-name: te-blur;
+}
+
+[data-te-state="animate"][data-te-preset="slide"] .te-unit {
+  animation-name: te-slide;
+}
+
+[data-te-state="armed"] .te-unit {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-te-state] .te-unit {
+    animation: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+  }
+}

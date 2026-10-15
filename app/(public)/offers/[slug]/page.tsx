@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MediaImage } from "@/components/site/MediaImage";
 import { CtaBand } from "@/components/site/CtaBand";
+import { TextEffect } from "@/components/core/text-effect";
 import { formatDay } from "@/lib/format";
 import { prisma } from "@/lib/db";
 
@@ -43,7 +44,11 @@ export default async function OfferDetailPage({ params }: PageProps) {
               ← Offers
             </Link>
           </nav>
-          <h1 className="display max-w-3xl text-[clamp(2.4rem,5.5vw,4rem)] text-ink">{offer.name}</h1>
+          <h1 className="display max-w-3xl text-[clamp(2.4rem,5.5vw,4rem)] text-ink">
+            <TextEffect per="char" stagger={16}>
+              {offer.name}
+            </TextEffect>
+          </h1>
           {(offer.validFrom || offer.validUntil) && (
             <p className="mt-4 text-[0.8rem] uppercase tracking-[0.18em] text-fog">
               {offer.validFrom ? `From ${formatDay(offer.validFrom)}` : ""}

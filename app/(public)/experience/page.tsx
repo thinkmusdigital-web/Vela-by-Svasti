@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/site/PageHero";
 import { CtaBand } from "@/components/site/CtaBand";
+import { TextEffect } from "@/components/core/text-effect";
 import { getContentValue } from "@/lib/content";
 
 export const revalidate = 300;
@@ -57,10 +58,14 @@ export default async function ExperiencePage() {
         <div className="shell py-16 text-center lg:py-24">
           <p className="eyebrow text-brass">Make it yours</p>
           <h2 className="display mx-auto mt-4 max-w-2xl text-[clamp(2rem,5vw,3.4rem)] text-cream">
-            Tell us what you need — we’ll shape the stay
+            <TextEffect inView per="char">
+              Tell us what you need — we’ll shape the stay
+            </TextEffect>
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-[1rem] leading-relaxed text-cream/75">
-            Rooms, dining, events or a combination — one enquiry covers it.
+            <TextEffect inView per="word" stagger={26} delay={100}>
+              Rooms, dining, events or a combination — one enquiry covers it.
+            </TextEffect>
           </p>
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link href="/enquire" className="btn-brass">

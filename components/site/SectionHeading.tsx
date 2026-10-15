@@ -1,3 +1,5 @@
+import { TextEffect } from "@/components/core/text-effect";
+
 interface SectionHeadingProps {
   eyebrow?: string;
   title?: string;
@@ -25,12 +27,16 @@ export function SectionHeading({
           id={id}
           className={`h-section mt-4 ${dark ? "text-cream" : "text-ink"}`}
         >
-          {title}
+          <TextEffect inView per="char">
+            {title}
+          </TextEffect>
         </h2>
       )}
       {body && (
         <p className={`mt-5 text-[1.02rem] leading-relaxed ${dark ? "text-cream/75" : "text-stone"}`}>
-          {body}
+          <TextEffect inView per="word" stagger={26} delay={120}>
+            {body}
+          </TextEffect>
         </p>
       )}
     </div>

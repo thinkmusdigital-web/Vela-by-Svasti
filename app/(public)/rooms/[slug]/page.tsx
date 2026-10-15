@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MediaImage } from "@/components/site/MediaImage";
 import { CtaBand } from "@/components/site/CtaBand";
+import { TextEffect } from "@/components/core/text-effect";
 import { prisma } from "@/lib/db";
 
 export const revalidate = 300;
@@ -61,9 +62,15 @@ export default async function RoomDetailPage({ params }: PageProps) {
               ← Stay / Rooms
             </Link>
           </nav>
-          <h1 className="display max-w-4xl text-[clamp(2.6rem,6vw,4.5rem)] text-ink">{room.name}</h1>
+          <h1 className="display max-w-4xl text-[clamp(2.6rem,6vw,4.5rem)] text-ink">
+            <TextEffect per="char" stagger={16}>
+              {room.name}
+            </TextEffect>
+          </h1>
           <p className="mt-5 max-w-2xl text-[1.05rem] leading-relaxed text-stone">
-            {room.shortDescription}
+            <TextEffect per="word" stagger={24} duration={320} delay={250}>
+              {room.shortDescription}
+            </TextEffect>
           </p>
         </div>
       </header>

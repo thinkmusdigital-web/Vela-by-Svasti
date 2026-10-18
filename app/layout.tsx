@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import "@/app/globals.css";
-import { HotelStructuredData } from "@/components/site/HotelStructuredData";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
@@ -52,7 +51,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         >
           Skip to content
         </a>
-        <HotelStructuredData />
         {children}
       </body>
     </html>

@@ -3,6 +3,7 @@ import { consume, RATE_LIMITS } from "@/lib/rate-limit";
 import { enquiryInputSchema, formatZodErrors } from "@/lib/validate";
 import { buildEnquiryPayload } from "@/lib/enquiry-payload";
 import { submitEnquiryToSheet } from "@/lib/google-sheets";
+import { PUBLIC_ROOM_TYPES } from "@/lib/room-types";
 
 export const runtime = "nodejs";
 
@@ -50,7 +51,8 @@ export async function POST(request: Request) {
     });
   }
 
-  const payload = buildEnquiryPayload(parsed.data);
+  const roomTypeName = PUBLIC_ROOM_TYPES.find((room) => room.id === parsed.data.roomTypeId)?.name ?? "";
+  const payload = buildEnquiryPayload(parsed.data, { roomTypeName });
   const result = await submitEnquiryToSheet(payload);
 
   if (!result.ok) {

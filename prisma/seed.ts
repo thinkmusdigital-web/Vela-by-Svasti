@@ -345,7 +345,7 @@ const ROOM_TYPES: RoomTypeSeed[] = [
     sizeSqft: 560,
     bedType: "King bed",
     maxOccupancy: 4,
-    image: "/images/room-suite.svg",
+    image: "/images/executive-suite.png",
   },
 ];
 

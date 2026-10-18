@@ -6,6 +6,7 @@ import { CtaBand } from "@/components/site/CtaBand";
 import { EnquiryForm } from "@/components/forms/EnquiryForm";
 import { EVENT_TYPES, EVENT_TYPE_LABELS } from "@/lib/constants";
 import { getContentValue } from "@/lib/content";
+import { PUBLIC_ROOM_TYPES } from "@/lib/room-types";
 
 export const revalidate = 300;
 
@@ -32,7 +33,7 @@ export default async function EventsPage() {
     "From weddings and anniversaries to conferences and private gatherings — share the occasion and our events team will call you back.",
   );
 
-  const roomTypes: { id: string; name: string; slug: string }[] = []; // Deferred until a database is provisioned.
+  const roomTypes = PUBLIC_ROOM_TYPES;
 
   return (
     <>

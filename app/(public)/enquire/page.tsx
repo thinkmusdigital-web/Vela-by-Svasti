@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { EnquiryForm } from "@/components/forms/EnquiryForm";
 import { getContactDetails } from "@/lib/content";
+import { PUBLIC_ROOM_TYPES } from "@/lib/room-types";
 
 export const metadata: Metadata = {
   title: "Enquire Now",
@@ -22,7 +23,7 @@ export default async function EnquirePage({ searchParams }: PageProps) {
   const eventType = params.event;
 
   const contact = await getContactDetails();
-  const roomTypes: { id: string; name: string; slug: string }[] = []; // Deferred until a database is provisioned.
+  const roomTypes = PUBLIC_ROOM_TYPES;
   const defaultRoom = roomSlug ? roomTypes.find((room) => room.slug === roomSlug) : undefined;
 
   const isEvent = enquiryType === "EVENT";

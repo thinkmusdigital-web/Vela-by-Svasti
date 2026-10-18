@@ -7,7 +7,8 @@ import { Reveal } from "@/components/site/Reveal";
 import { CtaBand } from "@/components/site/CtaBand";
 import { RoomCard } from "@/components/site/RoomCard";
 import { TextEffect } from "@/components/core/text-effect";
-import { getContentValue, getContentJson, getContactDetails } from "@/lib/content";
+import { Testimonials } from "@/components/site/Testimonials";
+import { getContentValue, getContactDetails } from "@/lib/content";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
@@ -43,7 +44,7 @@ export const metadata: Metadata = {
 export default async function HomePage() {
   const [heroTitle, heroTagline, heroSubtitle, heroKicker, heroImage, aboutTitle, aboutBody, aboutImage,
     stayBody, diningBody, wellnessBody, poolBody, eventsBody, offersBody, experiencesBody,
-    testimonials, roomTypes, offers, gallery, contact, concept] = await Promise.all([
+    roomTypes, offers, gallery, contact, concept] = await Promise.all([
     getContentValue("home.hero_title", "Lifestyle Hotel at VIP Chowk, Raipur"),
     getContentValue(
       "home.hero_tagline",
@@ -89,7 +90,6 @@ export default async function HomePage() {
       "home.experiences_body",
       "Stay, Dine, Meet, Unwind, Recharge, Celebrate — six ways to spend your time well at Vela.",
     ),
-    getContentJson<{ quote: string; author: string }[]>("home.testimonials", []),
     Promise.resolve<Prisma.RoomTypeGetPayload<{ include: { images: true } }>[]>([]),
     Promise.resolve<Prisma.OfferGetPayload<object>[]>([]),
     Promise.resolve<Prisma.GalleryImageGetPayload<object>[]>([]),
@@ -277,11 +277,11 @@ export default async function HomePage() {
           </div>
           <Reveal className="order-1 lg:order-2">
             <div className="grid grid-cols-2 gap-4">
-              <div className="group aspect-[3/4] overflow-hidden">
-                <MediaImage src="/images/spa.svg" alt="Spa at Vela by Svasti" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <div className="group relative aspect-[3/4] overflow-hidden">
+                <MediaImage src="/images/spa-hotel.png" alt="Spa treatment room inspired by Vela by Svasti" sizes="(min-width: 1024px) calc((100vw - 112px) / 4), (min-width: 640px) calc((100vw - 80px) / 2), 100vw" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
               </div>
-              <div className="group mt-10 aspect-[3/4] overflow-hidden">
-                <MediaImage src="/images/gym.svg" alt="Gym at Vela by Svasti" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <div className="group relative mt-10 aspect-[3/4] overflow-hidden">
+                <MediaImage src="/images/gym-enhanced.png" alt="Fitness room at Vela by Svasti" sizes="(min-width: 1024px) calc((100vw - 112px) / 4), (min-width: 640px) calc((100vw - 80px) / 2), 100vw" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
               </div>
             </div>
           </Reveal>
@@ -478,29 +478,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="border-t border-line bg-cream" aria-labelledby="home-testimonials">
-        <div className="shell py-20 lg:py-28">
-          <SectionHeading eyebrow="Guest Notes" title="What guests say" align="center" id="home-testimonials" />
-          {testimonials.length > 0 ? (
-            <ul className="mx-auto mt-12 grid max-w-6xl gap-8 md:grid-cols-3">
-              {testimonials.slice(0, 6).map((item, index) => (
-                <li key={index} className="flex flex-col justify-between border-t-2 border-brass bg-sand p-8">
-                  <p className="display text-xl italic leading-relaxed text-ink">“{item.quote}”</p>
-                  <p className="mt-6 text-[0.8rem] font-semibold uppercase tracking-[0.2em] text-brass-deep">
-                    — {item.author}
-                  </p>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p className="mx-auto mt-10 max-w-xl text-center text-[0.95rem] text-stone">
-              Guest testimonials will appear here once approved for publishing. They can be added
-              from Admin → Website Content (home.testimonials).
-            </p>
-          )}
-        </div>
-      </section>
+      <Testimonials />
 
       <CtaBand />
     </>

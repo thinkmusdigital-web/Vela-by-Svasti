@@ -36,7 +36,7 @@ export default async function LeisurePage() {
       <section className="relative bg-espresso text-cream" aria-label="Rooftop swimming pool">
         <div className="relative min-h-[70vh]">
           <div className="absolute inset-0">
-            <MediaImage src="/images/pool.svg" alt="Rooftop swimming pool at Vela by Svasti" className="h-full w-full object-cover" priority />
+            <MediaImage src="/images/rooftop-pool-enhanced.png" alt="Rooftop swimming pool at Vela by Svasti at sunset" className="h-full w-full object-cover" priority />
             <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/30 to-ink/20" />
           </div>
           <div className="shell relative z-10 flex min-h-[70vh] items-end py-16">

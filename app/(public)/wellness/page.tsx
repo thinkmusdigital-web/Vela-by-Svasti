@@ -31,8 +31,8 @@ export default async function WellnessPage() {
         eyebrow="Wellness"
         title="Restore & recharge"
         intro="Between the spa and the gym, Vela makes space for you to slow down or stay strong — whatever your day needs."
-        image="/images/spa.svg"
-        imageAlt="Wellness at Vela by Svasti"
+        image="/images/spa-hotel.png"
+        imageAlt="A calm spa treatment room inspired by Vela by Svasti"
       />
 
       <section className="bg-cream" aria-label="Wellness facilities">

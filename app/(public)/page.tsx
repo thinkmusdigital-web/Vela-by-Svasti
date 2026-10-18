@@ -292,7 +292,7 @@ export default async function HomePage() {
       <section className="relative bg-espresso text-cream" aria-labelledby="home-pool">
         <div className="relative min-h-[520px]">
           <div className="absolute inset-0">
-            <MediaImage src="/images/pool.svg" alt="Rooftop swimming pool at Vela by Svasti" className="h-full w-full object-cover opacity-75" />
+            <MediaImage src="/images/rooftop-pool-enhanced.png" alt="Rooftop swimming pool at Vela by Svasti at sunset" className="h-full w-full object-cover opacity-75" />
             <div className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/45 to-ink/20" />
           </div>
           <div className="shell relative z-10 flex min-h-[520px] items-center py-20">

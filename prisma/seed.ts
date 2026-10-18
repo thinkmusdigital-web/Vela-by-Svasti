@@ -366,9 +366,9 @@ const GALLERY_SEED = [
   { category: "RESTAURANT", url: "/images/hotel-restaurant.jpg", alt: "Restaurant at Vela by Svasti" },
   { category: "CAFE", url: "/images/hotel-cafe.jpg", alt: "Cafe at Vela by Svasti" },
   { category: "BAR", url: "/images/hotel-bar.jpg", alt: "Bar at Vela by Svasti" },
-  { category: "SPA", url: "/images/gallery-spa.svg", alt: "Spa artwork placeholder" },
-  { category: "GYM", url: "/images/gallery-gym.svg", alt: "Gym artwork placeholder" },
-  { category: "POOL", url: "/images/gallery-pool.svg", alt: "Rooftop pool artwork placeholder" },
+  { category: "SPA", url: "/images/spa-hotel.png", alt: "Spa treatment room inspired by Vela by Svasti" },
+  { category: "GYM", url: "/images/gym-enhanced.png", alt: "Fitness room at Vela by Svasti" },
+  { category: "POOL", url: "/images/rooftop-pool-enhanced.png", alt: "Rooftop swimming pool at Vela by Svasti at sunset" },
   { category: "EVENTS", url: "/images/hotel-events.jpg", alt: "Banquet hall at Vela by Svasti" },
 ];
 

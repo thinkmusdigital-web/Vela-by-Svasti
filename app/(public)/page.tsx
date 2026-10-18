@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { Prisma } from "@prisma/client";
 import Link from "next/link";
 import { MediaImage } from "@/components/site/MediaImage";
 import { SectionHeading } from "@/components/site/SectionHeading";
@@ -7,7 +8,6 @@ import { CtaBand } from "@/components/site/CtaBand";
 import { RoomCard } from "@/components/site/RoomCard";
 import { TextEffect } from "@/components/core/text-effect";
 import { getContentValue, getContentJson, getContactDetails } from "@/lib/content";
-import { prisma } from "@/lib/db";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
@@ -90,27 +90,9 @@ export default async function HomePage() {
       "Stay, Dine, Meet, Unwind, Recharge, Celebrate — six ways to spend your time well at Vela.",
     ),
     getContentJson<{ quote: string; author: string }[]>("home.testimonials", []),
-    prisma.roomType.findMany({
-      where: { active: true },
-      orderBy: { displayOrder: "asc" },
-      take: 3,
-      include: {
-        images: { where: { active: true }, orderBy: { sortOrder: "asc" }, take: 1 },
-      },
-    }),
-    prisma.offer.findMany({
-      where: {
-        active: true,
-        OR: [{ validUntil: null }, { validUntil: { gte: new Date() } }],
-      },
-      orderBy: { sortOrder: "asc" },
-      take: 3,
-    }),
-    prisma.galleryImage.findMany({
-      where: { active: true },
-      orderBy: { sortOrder: "asc" },
-      take: 8,
-    }),
+    Promise.resolve<Prisma.RoomTypeGetPayload<{ include: { images: true } }>[]>([]),
+    Promise.resolve<Prisma.OfferGetPayload<object>[]>([]),
+    Promise.resolve<Prisma.GalleryImageGetPayload<object>[]>([]),
     getContactDetails(),
     getContentValue("brand.concept", "Time Well Spent"),
   ]);

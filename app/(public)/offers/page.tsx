@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
+import type { Prisma } from "@prisma/client";
 import Link from "next/link";
 import { MediaImage } from "@/components/site/MediaImage";
 import { PageHero } from "@/components/site/PageHero";
 import { CtaBand } from "@/components/site/CtaBand";
 import { formatDay } from "@/lib/format";
 import { getContentValue } from "@/lib/content";
-import { prisma } from "@/lib/db";
 
 export const revalidate = 300;
 
@@ -22,14 +22,7 @@ export default async function OffersPage() {
     "Seasonal offers and value-added stays, published here as they become available.",
   );
 
-  const offers = await prisma.offer.findMany({
-    where: {
-      active: true,
-      OR: [{ validUntil: null }, { validUntil: { gte: new Date() } }],
-    },
-    orderBy: [{ sortOrder: "asc" }, { createdAt: "desc" }],
-    include: { roomType: { select: { name: true } } },
-  });
+  const offers: Prisma.OfferGetPayload<{ include: { roomType: { select: { name: true } } } }>[] = []; // Deferred until a database is provisioned.
 
   return (
     <>

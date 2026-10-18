@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
+import type { Prisma } from "@prisma/client";
 import Link from "next/link";
 import { PageHero } from "@/components/site/PageHero";
 import { RoomCard } from "@/components/site/RoomCard";
 import { CtaBand } from "@/components/site/CtaBand";
 import { getContentValue } from "@/lib/content";
-import { prisma } from "@/lib/db";
 
 export const revalidate = 300;
 
@@ -21,13 +21,7 @@ export default async function RoomsPage() {
     "More than 70 rooms across comfortable room types. Choose a room, then enquire for availability.",
   );
 
-  const roomTypes = await prisma.roomType.findMany({
-    where: { active: true },
-    orderBy: [{ displayOrder: "asc" }, { name: "asc" }],
-    include: {
-      images: { where: { active: true }, orderBy: { sortOrder: "asc" } },
-    },
-  });
+  const roomTypes: Prisma.RoomTypeGetPayload<{ include: { images: true } }>[] = []; // Deferred until a database is provisioned.
 
   return (
     <>

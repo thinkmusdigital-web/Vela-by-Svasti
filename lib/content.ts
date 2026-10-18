@@ -1,11 +1,12 @@
 import "server-only";
 import { cache } from "react";
-import { prisma } from "@/lib/db";
 import { isHttpUrl, safeEmbedUrl } from "@/lib/url";
 
 export const getContentMap = cache(async (): Promise<Record<string, string>> => {
-  const rows = await prisma.websiteContent.findMany({ select: { key: true, value: true } });
-  return Object.fromEntries(rows.map((row) => [row.key, row.value]));
+  // Public site is database-free for the initial deployment. Values supplied
+  // by each page are the source-controlled defaults; Prisma-backed editing is
+  // intentionally deferred until a persistent database is provisioned.
+  return {};
 });
 
 export async function getContentValue(key: string, fallback = ""): Promise<string> {
@@ -65,6 +66,5 @@ export const getContactDetails = cache(async (): Promise<ContactDetails> => {
 });
 
 export const getSettingsMap = cache(async (): Promise<Record<string, string>> => {
-  const rows = await prisma.setting.findMany({ select: { key: true, value: true } });
-  return Object.fromEntries(rows.map((row) => [row.key, row.value]));
+  return {};
 });

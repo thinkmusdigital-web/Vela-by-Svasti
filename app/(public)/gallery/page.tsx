@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
+import type { Prisma } from "@prisma/client";
 import { PageHero } from "@/components/site/PageHero";
 import { CtaBand } from "@/components/site/CtaBand";
 import { GalleryGrid } from "@/components/site/GalleryGrid";
 import { getContentValue } from "@/lib/content";
-import { prisma } from "@/lib/db";
 
 export const revalidate = 300;
 
@@ -20,10 +20,7 @@ export default async function GalleryPage() {
     "A look around the property — add images from Admin → Gallery.",
   );
 
-  const gallery = await prisma.galleryImage.findMany({
-    where: { active: true },
-    orderBy: [{ sortOrder: "asc" }, { createdAt: "asc" }],
-  });
+  const gallery: Prisma.GalleryImageGetPayload<object>[] = []; // Deferred until a database is provisioned.
 
   return (
     <>

@@ -1,4 +1,10 @@
-# Database
+# Database (deferred for the initial Hostinger deployment)
+
+The current public website is being prepared to run without a database.
+Website enquiries continue to go to Google Apps Script and Google Sheets.
+Prisma-powered content editing, room/offer/gallery management, and user admin
+remain in the source but require a persistent database before they can be used.
+Do not run local migration commands expecting them to configure Hostinger.
 
 Vela by Svasti ships on **SQLite** for local development, tests and the MVP
 deployment. The Prisma schema is deliberately portable so the move to

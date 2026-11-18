@@ -7,18 +7,18 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Vela by Svasti — Stay in the Moment | Hotel at VIP Chowk, Raipur",
+    default: "Vela by Svasti — Stay in the Moment | Hotel at vip square, Raipur",
     template: "%s — Vela by Svasti, Raipur",
   },
   description:
-    "Vela by Svasti is a contemporary lifestyle hotel at VIP Chowk, Raipur, Chhattisgarh — 70+ rooms, fine dining, café, bar, spa, gym, rooftop pool and banquet facilities. Enquire for availability.",
+    "Vela by Svasti is a contemporary lifestyle hotel at vip square, Raipur, Chhattisgarh — 70+ rooms, fine dining, café, bar, spa, gym, rooftop pool and banquet facilities. Enquire for availability.",
   keywords: [
     "Vela by Svasti",
     "hotel in Raipur",
-    "VIP Chowk Raipur hotel",
+    "vip square Raipur hotel",
     "luxury hotel Chhattisgarh",
     "rooms in Raipur",
-    "banquets near VIP Chowk",
+    "banquets near vip square",
   ],
   openGraph: {
     type: "website",
@@ -26,14 +26,14 @@ export const metadata: Metadata = {
     siteName: "Vela by Svasti",
     title: "Vela by Svasti — Stay in the Moment",
     description:
-      "Contemporary lifestyle hotel at VIP Chowk, Raipur — stays, dining, wellness, events and time well spent.",
+      "Contemporary lifestyle hotel at vip square, Raipur — stays, dining, wellness, events and time well spent.",
     url: SITE_URL,
   },
   twitter: {
     card: "summary_large_image",
     title: "Vela by Svasti — Stay in the Moment",
     description:
-      "Contemporary lifestyle hotel at VIP Chowk, Raipur — stays, dining, wellness, events and time well spent.",
+      "Contemporary lifestyle hotel at vip square, Raipur — stays, dining, wellness, events and time well spent.",
   },
   robots: {
     index: true,

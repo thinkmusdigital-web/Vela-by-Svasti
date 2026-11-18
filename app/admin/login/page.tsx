@@ -20,7 +20,7 @@ export default async function AdminLoginPage({ searchParams }: PageProps) {
     <main className="flex min-h-screen items-center justify-center bg-cream px-5">
       <div className="w-full max-w-md">
         <Link href="/" className="block text-center">
-          <Logo variant="dark" layout="full" height={72} priority className="mx-auto" />
+          <Logo variant="light-surface" layout="full" height={72} priority className="mx-auto" />
         </Link>
         <div className="mt-8 border border-line bg-white p-8">
           <p className="label-field">Sign in</p>

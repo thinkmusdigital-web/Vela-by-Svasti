@@ -16,10 +16,10 @@ export async function Footer() {
     <footer className="border-t border-line bg-sand">
       <div className="shell grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-5">
         <div className="lg:pr-6">
-          <Logo variant="dark" layout="full" height={136} />
+          <Logo variant="dark-surface" layout="full" height={136} />
           <p className="display mt-6 text-[1.6rem] text-ink">{tagline}</p>
           <p className="mt-3 max-w-sm text-[0.9rem] leading-relaxed text-stone">
-            Contemporary lifestyle hospitality at VIP Chowk, Raipur — stays, dining, wellness and
+            Contemporary lifestyle hospitality at vip square, Raipur — stays, dining, wellness and
             celebrations.
           </p>
           {contact.socials.length > 0 && (

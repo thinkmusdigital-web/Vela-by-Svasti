@@ -70,7 +70,22 @@ export function Header() {
     >
       <div className="shell flex h-16 items-center justify-between gap-6">
         <Link href="/" aria-label="Vela by Svasti — home" className="flex shrink-0 items-center">
-          <Logo variant={darkSurface ? "light" : "dark"} layout="wordmark" height={38} priority />
+          {/* Compact wordmark on small screens, full lockup from sm up. Artwork
+              flips to the transparent light version over the dark hero/menu. */}
+          <Logo
+            variant={darkSurface ? "dark-surface" : "light-surface"}
+            layout="wordmark"
+            height={30}
+            priority
+            className="sm:hidden"
+          />
+          <Logo
+            variant={darkSurface ? "dark-surface" : "light-surface"}
+            layout="full"
+            height={52}
+            priority
+            className="hidden sm:block"
+          />
         </Link>
 
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
@@ -328,7 +343,7 @@ export function Header() {
               Enquire Now
             </Link>
             <p className="pt-2 text-[0.8rem] uppercase tracking-[0.2em] text-fog">
-              VIP Chowk · Raipur · Chhattisgarh
+              vip square · Raipur · Chhattisgarh
             </p>
           </div>
         </nav>

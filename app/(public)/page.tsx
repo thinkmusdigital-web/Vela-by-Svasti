@@ -8,6 +8,7 @@ import { CtaBand } from "@/components/site/CtaBand";
 import { RoomCard } from "@/components/site/RoomCard";
 import { TextEffect } from "@/components/core/text-effect";
 import { Testimonials } from "@/components/site/Testimonials";
+import { Logo } from "@/components/site/Logo";
 import { getContentValue, getContactDetails } from "@/lib/content";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
@@ -16,10 +17,10 @@ export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Lifestyle Hotel in VIP Chowk, Raipur | Stay, Dine & Celebrate",
+    absolute: "Lifestyle Hotel in vip square, Raipur | Stay, Dine & Celebrate",
   },
   description:
-    "Stay at a contemporary lifestyle hotel in VIP Chowk, Raipur. Enjoy comfortable rooms, fine dining, wellness, and celebration venues, all under one roof.",
+    "Stay at a contemporary lifestyle hotel in vip square, Raipur. Enjoy comfortable rooms, fine dining, wellness, and celebration venues, all under one roof.",
   alternates: {
     canonical: "/",
   },
@@ -27,17 +28,25 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
     siteName: "Vela by Svasti",
-    title: "Lifestyle Hotel in VIP Chowk, Raipur | Stay, Dine & Celebrate",
+    title: "Lifestyle Hotel in vip square, Raipur | Stay, Dine & Celebrate",
     description:
-      "Stay at a contemporary lifestyle hotel in VIP Chowk, Raipur. Enjoy comfortable rooms, fine dining, wellness, and celebration venues, all under one roof.",
+      "Stay at a contemporary lifestyle hotel in vip square, Raipur. Enjoy comfortable rooms, fine dining, wellness, and celebration venues, all under one roof.",
     url: SITE_URL,
-    images: [{ url: `${SITE_URL}/images/hotel-exterior.jpg` }],
+    images: [
+      {
+        url: "/opengraph-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Vela by Svasti logo",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Lifestyle Hotel in VIP Chowk, Raipur | Stay, Dine & Celebrate",
+    title: "Lifestyle Hotel in vip square, Raipur | Stay, Dine & Celebrate",
     description:
-      "Stay at a contemporary lifestyle hotel in VIP Chowk, Raipur. Enjoy comfortable rooms, fine dining, wellness, and celebration venues, all under one roof.",
+      "Stay at a contemporary lifestyle hotel in vip square, Raipur. Enjoy comfortable rooms, fine dining, wellness, and celebration venues, all under one roof.",
+    images: ["/opengraph-image.png"],
   },
 };
 
@@ -45,21 +54,21 @@ export default async function HomePage() {
   const [heroTitle, heroTagline, heroSubtitle, heroKicker, heroImage, aboutTitle, aboutBody, aboutImage,
     stayBody, diningBody, wellnessBody, poolBody, eventsBody, offersBody, experiencesBody,
     roomTypes, offers, gallery, contact, concept] = await Promise.all([
-    getContentValue("home.hero_title", "Lifestyle Hotel at VIP Chowk, Raipur"),
+    getContentValue("home.hero_title", "Lifestyle Hotel at vip square, Raipur"),
     getContentValue(
       "home.hero_tagline",
       "Stay. Dine. Unwind. Celebrate. Your lifestyle hotel in the heart of Raipur.",
     ),
     getContentValue(
       "home.hero_subtitle",
-      "Welcome to a contemporary lifestyle hotel at VIP Chowk, Raipur, where comfortable stays, great dining, rejuvenating wellness, and memorable celebrations come together. Whether you're visiting for business, a weekend break, or a special occasion, every moment here is time well spent.",
+      "Welcome to a contemporary lifestyle hotel at vip square, Raipur, where comfortable stays, great dining, rejuvenating wellness, and memorable celebrations come together. Whether you're visiting for business, a weekend break, or a special occasion, every moment here is time well spent.",
     ),
-    getContentValue("home.hero_kicker", "VIP Chowk · Raipur"),
+    getContentValue("home.hero_kicker", "vip square · Raipur"),
     getContentValue("home.hero_image", "/images/hotel-exterior.jpg"),
     getContentValue("home.about_title", "About Vela"),
     getContentValue(
       "home.about_body",
-      "Vela by Svasti is a contemporary lifestyle hospitality destination at VIP Chowk, Raipur, Chhattisgarh.",
+      "Vela by Svasti is a contemporary lifestyle hospitality destination at vip square, Raipur, Chhattisgarh.",
     ),
     getContentValue("home.about_image", "/images/hotel-lobby.jpg"),
     getContentValue(
@@ -109,11 +118,11 @@ export default async function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative flex min-h-[86svh] items-end bg-ink" aria-label="Lifestyle hotel at VIP Chowk, Raipur">
+      <section className="relative flex min-h-[86svh] items-end bg-ink" aria-label="Lifestyle hotel at vip square, Raipur">
         <div className="absolute inset-0">
           <MediaImage
             src={heroImage}
-            alt="Contemporary lifestyle hotel at VIP Chowk, Raipur"
+            alt="Contemporary lifestyle hotel at vip square, Raipur"
             className="h-full w-full object-cover opacity-80"
             priority
           />
@@ -132,6 +141,13 @@ export default async function HomePage() {
         </div>
         <div className="shell relative z-10 pb-16 pt-40">
           <Reveal>
+            <Logo
+              variant="dark-surface"
+              layout="full"
+              height={120}
+              priority
+              className="hero-logo mb-8 h-auto w-[clamp(7rem,12vw,10rem)]"
+            />
             <p className="mb-6 flex items-center gap-4 text-[0.72rem] font-semibold uppercase tracking-[0.3em] text-brass">
               <span className="h-px w-10 bg-brass" aria-hidden="true" />
               {heroKicker}
@@ -455,14 +471,14 @@ export default async function HomePage() {
         <div className="shell grid items-center gap-12 py-20 lg:grid-cols-2 lg:py-28">
           <Reveal>
             <div className="relative aspect-[16/9] overflow-hidden">
-              <MediaImage src="/images/hotel-exterior.jpg" alt="Vela by Svasti at VIP Chowk, Raipur" sizes="(min-width: 1400px) 645px, (min-width: 1024px) calc((100vw - 112px) / 2), 100vw" className="h-full w-full object-cover" />
+              <MediaImage src="/images/hotel-exterior.jpg" alt="Vela by Svasti at vip square, Raipur" sizes="(min-width: 1400px) 645px, (min-width: 1024px) calc((100vw - 112px) / 2), 100vw" className="h-full w-full object-cover" />
             </div>
           </Reveal>
           <div>
             <SectionHeading
               eyebrow="Location"
-              title="VIP Chowk, Raipur"
-              body="Vela by Svasti is at VIP Chowk, Raipur, Chhattisgarh — easy to reach, easy to stay."
+              title="vip square, Raipur"
+              body="Vela by Svasti is at vip square, Raipur, Chhattisgarh — easy to reach, easy to stay."
               id="home-location"
             />
             <address className="mt-2 text-[1.05rem] not-italic text-ink">{contact.address}</address>

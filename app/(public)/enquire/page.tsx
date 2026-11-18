@@ -7,7 +7,7 @@ import { PUBLIC_ROOM_TYPES } from "@/lib/room-types";
 export const metadata: Metadata = {
   title: "Enquire Now",
   description:
-    "Send an enquiry to Vela by Svasti, VIP Chowk, Raipur. Rooms, dining, wellness and events — our team will call you back to confirm availability and rates.",
+    "Send an enquiry to Vela by Svasti, vip square, Raipur. Rooms, dining, wellness and events — our team will call you back to confirm availability and rates.",
   alternates: { canonical: "/enquire" },
 };
 

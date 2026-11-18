@@ -14,7 +14,7 @@ const outDir = join(root, "public", "images");
 mkdirSync(outDir, { recursive: true });
 
 const images = [
-  { file: "hero.svg", label: "Hero", caption: "Replace via Admin → Website Content", w: 1920, h: 1100, tone: "#14110f", accent: "#b08d57" },
+  { file: "hero.svg", label: "Hero", caption: "Replace via Admin → Website Content", w: 1920, h: 1100, tone: "#14110f", accent: "#d88432" },
   { file: "about.svg", label: "About Vela", caption: "Replace via Admin → Website Content", w: 1400, h: 1050 },
   { file: "dining.svg", label: "Fine Dining", caption: "Replace via Admin → Website Content", w: 1400, h: 1050 },
   { file: "cafe.svg", label: "Café", caption: "Replace via Admin → Website Content", w: 1400, h: 1050 },
@@ -23,7 +23,6 @@ const images = [
   { file: "gym.svg", label: "Gym", caption: "Replace via Admin → Website Content", w: 1400, h: 1050 },
   { file: "pool.svg", label: "Rooftop Pool", caption: "Replace via Admin → Website Content", w: 1400, h: 1050 },
   { file: "events.svg", label: "Banquets & Events", caption: "Replace via Admin → Website Content", w: 1400, h: 1050 },
-  { file: "location.svg", label: "VIP Chowk, Raipur", caption: "Replace via Admin → Website Content", w: 1400, h: 900 },
   { file: "experience.svg", label: "Experience", caption: "Stay · Dine · Meet · Unwind · Recharge · Celebrate", w: 1400, h: 1050 },
   { file: "room-deluxe.svg", label: "Deluxe Room", caption: "Replace via Admin → Room Types", w: 1400, h: 1000 },
   { file: "room-premium.svg", label: "Premium Room", caption: "Replace via Admin → Room Types", w: 1400, h: 1000 },
@@ -39,7 +38,7 @@ const images = [
   { file: "gallery-events.svg", label: "Events", caption: "Placeholder", w: 1200, h: 900 },
 ];
 
-function svg({ file, label, caption, w, h, tone = "#1b1714", accent = "#b08d57" }) {
+function svg({ file, label, caption, w, h, tone = "#1b1714", accent = "#d88432" }) {
   const titleId = `t-${file}`;
   const big = Math.round(Math.min(w, h) * 0.11);
   const small = Math.round(Math.min(w, h) * 0.032);

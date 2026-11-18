@@ -12,7 +12,7 @@ export const revalidate = 300;
 export const metadata: Metadata = {
   title: "Wellness",
   description:
-    "Spa and gym at Vela by Svasti, VIP Chowk, Raipur — wellbeing as part of the stay. Enquire for services and timings.",
+    "Spa and gym at Vela by Svasti, vip square, Raipur — wellbeing as part of the stay. Enquire for services and timings.",
   alternates: { canonical: "/wellness" },
 };
 

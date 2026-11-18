@@ -8,8 +8,8 @@
     </linearGradient>
     <radialGradient id="spa-glow" cx="0.5" cy="0.4" r="0.62">
       <stop offset="0%" stop-color="#d9b26f" stop-opacity="0.5"/>
-      <stop offset="45%" stop-color="#b08d57" stop-opacity="0.16"/>
-      <stop offset="100%" stop-color="#b08d57" stop-opacity="0"/>
+      <stop offset="45%" stop-color="#d88432" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#d88432" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="spa-lantern" cx="0.5" cy="0.42" r="0.6">
       <stop offset="0%" stop-color="#ffe1a0"/>
@@ -40,7 +40,7 @@
   <rect width="1400" height="1050" fill="url(#spa-bg)"/>
 
   <g>
-    <path d="M360 1050 L360 560 A340 340 0 0 1 1040 560 L1040 1050" fill="none" stroke="#b08d57" stroke-opacity="0.55" stroke-width="5"/>
+    <path d="M360 1050 L360 560 A340 340 0 0 1 1040 560 L1040 1050" fill="none" stroke="#d88432" stroke-opacity="0.55" stroke-width="5"/>
     <path d="M400 1050 L400 560 A300 300 0 0 1 1000 560 L1000 1050" fill="none" stroke="#cfae77" stroke-opacity="0.18" stroke-width="2"/>
   </g>
 
@@ -61,7 +61,7 @@
   </g>
 
   <g>
-    <line x1="700" y1="262" x2="700" y2="336" stroke="#b08d57" stroke-width="5"/>
+    <line x1="700" y1="262" x2="700" y2="336" stroke="#d88432" stroke-width="5"/>
     <circle cx="700" cy="398" r="150" fill="#ffd98f" opacity="0.12"/>
     <rect x="668" y="336" width="64" height="96" rx="12" fill="url(#spa-lantern)"/>
     <rect x="668" y="336" width="64" height="96" rx="12" fill="none" stroke="#ffe1a0" stroke-opacity="0.55" stroke-width="2"/>
@@ -69,8 +69,8 @@
   </g>
 
   <g>
-    <ellipse cx="700" cy="990" rx="232" ry="40" fill="url(#spa-steel)" stroke="#b08d57" stroke-opacity="0.6" stroke-width="3"/>
-    <ellipse cx="700" cy="984" rx="198" ry="30" fill="#0b1411" stroke="#b08d57" stroke-opacity="0.35" stroke-width="2"/>
+    <ellipse cx="700" cy="990" rx="232" ry="40" fill="url(#spa-steel)" stroke="#d88432" stroke-opacity="0.6" stroke-width="3"/>
+    <ellipse cx="700" cy="984" rx="198" ry="30" fill="#0b1411" stroke="#d88432" stroke-opacity="0.35" stroke-width="2"/>
     <ellipse cx="700" cy="980" rx="208" ry="34" fill="none" stroke="#d9b26f" stroke-opacity="0.5" stroke-width="1.5"/>
   </g>
 
@@ -107,7 +107,7 @@
     <rect x="1092" y="950" width="150" height="56" rx="6" fill="#f4efe8" opacity="0.9"/>
     <rect x="1110" y="902" width="132" height="48" rx="6" fill="#e9dfd0" opacity="0.82"/>
     <rect x="1128" y="858" width="114" height="44" rx="6" fill="#d8c9b2" opacity="0.75"/>
-    <line x1="1140" y1="962" x2="1140" y2="992" stroke="#b08d57" stroke-width="6"/>
+    <line x1="1140" y1="962" x2="1140" y2="992" stroke="#d88432" stroke-width="6"/>
   </g>
 
   <g fill="#d9b26f">

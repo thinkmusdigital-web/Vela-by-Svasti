@@ -36,14 +36,14 @@ export function Testimonials() {
         </p>
         <ul className="mx-auto mt-10 grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {reviews.map((review) => (
-            <li key={review.author} className="relative flex min-h-[300px] flex-col rounded-xl border border-brass/70 bg-[#fff9ef] p-7 shadow-[0_8px_22px_rgba(79,48,19,0.12)] sm:p-8">
+            <li key={review.author} className="relative flex min-h-[300px] flex-col rounded-xl border border-brass/50 bg-sand p-7 shadow-[0_8px_22px_rgba(48,21,8,0.12)] sm:p-8">
               <span aria-hidden="true" className="display absolute left-7 top-3 text-6xl leading-none text-brass sm:left-8 sm:top-4">“</span>
-              <p className="display mt-8 min-h-28 pl-10 text-[1.2rem] italic leading-relaxed text-[#4b2818] sm:text-[1.32rem]">{review.quote}</p>
+              <p className="display mt-8 min-h-28 pl-10 text-[1.2rem] italic leading-relaxed text-ink sm:text-[1.32rem]">{review.quote}</p>
               <div className="mt-auto">
                 <p aria-label="5 out of 5 stars" className="mb-3 text-xl tracking-[0.08em] text-brass">★★★★★</p>
                 <div className="flex items-center justify-between gap-3 border-t border-brass/40 pt-4">
-                  <p className="text-base font-semibold text-[#4b2818]">{review.author}</p>
-                  <p className="border-l border-brass/40 pl-4 text-xs font-medium uppercase tracking-[0.18em] text-[#9a7650]">{review.city}</p>
+                  <p className="text-base font-semibold text-ink">{review.author}</p>
+                  <p className="border-l border-brass/40 pl-4 text-xs font-medium uppercase tracking-[0.18em] text-brass-deep">{review.city}</p>
                 </div>
               </div>
             </li>

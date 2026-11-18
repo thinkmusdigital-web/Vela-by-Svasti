@@ -36,7 +36,7 @@ const CONTENT: ContentSeed[] = [
   {
     key: "contact.address",
     label: "Address",
-    value: "VIP Chowk, Raipur, Chhattisgarh",
+    value: "vip square, Raipur, Chhattisgarh",
     group: "Contact",
   },
   { key: "contact.phone", label: "Phone number", value: "", group: "Contact" },
@@ -63,11 +63,11 @@ const CONTENT: ContentSeed[] = [
   { key: "social.linkedin", label: "LinkedIn URL", value: "", group: "Social" },
 
   // Home — hero
-  { key: "home.hero_kicker", label: "Hero kicker", value: "VIP Chowk · Raipur", group: "Home page" },
+  { key: "home.hero_kicker", label: "Hero kicker", value: "vip square · Raipur", group: "Home page" },
   {
     key: "home.hero_title",
     label: "Hero title (H1)",
-    value: "Lifestyle Hotel at VIP Chowk, Raipur",
+    value: "Lifestyle Hotel at vip square, Raipur",
     group: "Home page",
   },
   {
@@ -80,7 +80,7 @@ const CONTENT: ContentSeed[] = [
     key: "home.hero_subtitle",
     label: "Hero subtitle",
     value:
-      "Welcome to a contemporary lifestyle hotel at VIP Chowk, Raipur, where comfortable stays, great dining, rejuvenating wellness, and memorable celebrations come together. Whether you're visiting for business, a weekend break, or a special occasion, every moment here is time well spent.",
+      "Welcome to a contemporary lifestyle hotel at vip square, Raipur, where comfortable stays, great dining, rejuvenating wellness, and memorable celebrations come together. Whether you're visiting for business, a weekend break, or a special occasion, every moment here is time well spent.",
     group: "Home page",
     type: "textarea",
   },
@@ -98,7 +98,7 @@ const CONTENT: ContentSeed[] = [
     key: "home.about_body",
     label: "About section body",
     value:
-      "Vela by Svasti is a contemporary lifestyle hospitality destination at VIP Chowk, Raipur, Chhattisgarh.\n\nWith more than 70 rooms, fine dining, a café, a premium bar, spa, gym, rooftop swimming pool and banquet facilities, Vela brings stays, meals, work, wellness and celebrations together under one roof.\n\nTime well spent — that is the promise behind every stay.",
+      "Vela by Svasti is a contemporary lifestyle hospitality destination at vip square, Raipur, Chhattisgarh.\n\nWith more than 70 rooms, fine dining, a café, a premium bar, spa, gym, rooftop swimming pool and banquet facilities, Vela brings stays, meals, work, wellness and celebrations together under one roof.\n\nTime well spent — that is the promise behind every stay.",
     group: "Home page",
     type: "textarea",
   },
@@ -269,7 +269,7 @@ const CONTENT: ContentSeed[] = [
     key: "location.page_body",
     label: "Location page body",
     value:
-      "Vela by Svasti is located at VIP Chowk, Raipur, Chhattisgarh. Use Get Directions for turn-by-turn navigation to the property.",
+      "Vela by Svasti is located at vip square, Raipur, Chhattisgarh. Use Get Directions for turn-by-turn navigation to the property.",
     group: "Location",
     type: "textarea",
   },
@@ -444,7 +444,7 @@ async function main() {
         bedType: roomType.bedType,
         maxOccupancy: roomType.maxOccupancy,
         displayOrder: index,
-        seoTitle: `${roomType.name} at Vela by Svasti, VIP Chowk Raipur`,
+        seoTitle: `${roomType.name} at Vela by Svasti, vip square Raipur`,
         seoDescription: roomType.shortDescription,
         images: { create: { url: roomType.image, alt: `${roomType.name} placeholder image`, sortOrder: 0 } },
         amenities: { create: AMENITIES.map((name, i) => ({ name, sortOrder: i })) },

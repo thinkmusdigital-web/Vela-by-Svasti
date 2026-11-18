@@ -32,7 +32,7 @@
   <rect width="1400" height="1050" fill="url(#gym-bg)"/>
   <rect y="0" width="1400" height="760" fill="url(#gym-grid)"/>
 
-  <g fill="none" stroke="#b08d57">
+  <g fill="none" stroke="#d88432">
     <circle cx="300" cy="300" r="190" stroke-opacity="0.12" stroke-width="2"/>
     <circle cx="300" cy="300" r="130" stroke-opacity="0.09" stroke-width="2"/>
     <circle cx="300" cy="300" r="70" stroke-opacity="0.14" stroke-width="2"/>
@@ -47,8 +47,8 @@
     <line x1="1020" y1="250" x2="1300" y2="250" stroke="#d9b26f" stroke-width="13"/>
     <line x1="1020" y1="250" x2="1020" y2="520" stroke="#2c241c" stroke-width="18"/>
     <line x1="1300" y1="250" x2="1300" y2="520" stroke="#2c241c" stroke-width="18"/>
-    <circle cx="1020" cy="252" r="9" fill="#b08d57"/>
-    <circle cx="1300" cy="252" r="9" fill="#b08d57"/>
+    <circle cx="1020" cy="252" r="9" fill="#d88432"/>
+    <circle cx="1300" cy="252" r="9" fill="#d88432"/>
   </g>
 
   <g>
@@ -60,13 +60,13 @@
   <g>
     <g>
       <rect x="223" y="670" width="124" height="30" rx="10" fill="#4a3d2e"/>
-      <ellipse cx="231" cy="685" rx="27" ry="30" fill="url(#gym-iron)" stroke="#b08d57" stroke-opacity="0.4" stroke-width="2"/>
-      <ellipse cx="339" cy="685" rx="27" ry="30" fill="url(#gym-iron)" stroke="#b08d57" stroke-opacity="0.4" stroke-width="2"/>
+      <ellipse cx="231" cy="685" rx="27" ry="30" fill="url(#gym-iron)" stroke="#d88432" stroke-opacity="0.4" stroke-width="2"/>
+      <ellipse cx="339" cy="685" rx="27" ry="30" fill="url(#gym-iron)" stroke="#d88432" stroke-opacity="0.4" stroke-width="2"/>
     </g>
     <g>
       <rect x="223" y="706" width="140" height="34" rx="11" fill="#4a3d2e"/>
-      <ellipse cx="229" cy="723" rx="31" ry="35" fill="url(#gym-iron)" stroke="#b08d57" stroke-opacity="0.4" stroke-width="2"/>
-      <ellipse cx="357" cy="723" rx="31" ry="35" fill="url(#gym-iron)" stroke="#b08d57" stroke-opacity="0.4" stroke-width="2"/>
+      <ellipse cx="229" cy="723" rx="31" ry="35" fill="url(#gym-iron)" stroke="#d88432" stroke-opacity="0.4" stroke-width="2"/>
+      <ellipse cx="357" cy="723" rx="31" ry="35" fill="url(#gym-iron)" stroke="#d88432" stroke-opacity="0.4" stroke-width="2"/>
     </g>
   </g>
 
@@ -78,32 +78,32 @@
   <g>
     <ellipse cx="1072" cy="600" rx="14" ry="54" fill="url(#gym-iron)"/>
     <path d="M1058 560 C 1054 512 1060 486 1072 486 C 1084 486 1090 512 1086 560" fill="none" stroke="#d9b26f" stroke-width="12" stroke-linecap="round"/>
-    <ellipse cx="1072" cy="646" rx="60" ry="66" fill="url(#gym-iron)" stroke="#b08d57" stroke-opacity="0.5" stroke-width="3"/>
+    <ellipse cx="1072" cy="646" rx="60" ry="66" fill="url(#gym-iron)" stroke="#d88432" stroke-opacity="0.5" stroke-width="3"/>
     <ellipse cx="1048" cy="616" rx="22" ry="34" fill="#6d5940" opacity="0.55"/>
   </g>
 
   <rect y="856" width="1400" height="194" fill="#1a1410"/>
-  <line x1="0" y1="856" x2="1400" y2="856" stroke="#b08d57" stroke-opacity="0.5" stroke-width="2"/>
+  <line x1="0" y1="856" x2="1400" y2="856" stroke="#d88432" stroke-opacity="0.5" stroke-width="2"/>
 
   <g>
-    <line x1="240" y1="968" x2="1160" y2="968" stroke="#b08d57" stroke-width="22" stroke-linecap="round"/>
+    <line x1="240" y1="968" x2="1160" y2="968" stroke="#d88432" stroke-width="22" stroke-linecap="round"/>
     <line x1="240" y1="958" x2="1160" y2="958" stroke="#e8c98f" stroke-opacity="0.5" stroke-width="4"/>
     <g>
-      <circle cx="402" cy="968" r="88" fill="url(#gym-plate)" stroke="#b08d57" stroke-opacity="0.55" stroke-width="4"/>
+      <circle cx="402" cy="968" r="88" fill="url(#gym-plate)" stroke="#d88432" stroke-opacity="0.55" stroke-width="4"/>
       <circle cx="402" cy="968" r="60" fill="none" stroke="#d9b26f" stroke-opacity="0.45" stroke-width="2"/>
-      <circle cx="402" cy="968" r="14" fill="#b08d57"/>
-      <circle cx="348" cy="968" r="64" fill="#2d241a" stroke="#b08d57" stroke-opacity="0.35" stroke-width="3"/>
-      <circle cx="302" cy="968" r="46" fill="#241c14" stroke="#b08d57" stroke-opacity="0.3" stroke-width="2"/>
+      <circle cx="402" cy="968" r="14" fill="#d88432"/>
+      <circle cx="348" cy="968" r="64" fill="#2d241a" stroke="#d88432" stroke-opacity="0.35" stroke-width="3"/>
+      <circle cx="302" cy="968" r="46" fill="#241c14" stroke="#d88432" stroke-opacity="0.3" stroke-width="2"/>
     </g>
     <g>
-      <circle cx="998" cy="968" r="88" fill="url(#gym-plate)" stroke="#b08d57" stroke-opacity="0.55" stroke-width="4"/>
+      <circle cx="998" cy="968" r="88" fill="url(#gym-plate)" stroke="#d88432" stroke-opacity="0.55" stroke-width="4"/>
       <circle cx="998" cy="968" r="60" fill="none" stroke="#d9b26f" stroke-opacity="0.45" stroke-width="2"/>
-      <circle cx="998" cy="968" r="14" fill="#b08d57"/>
-      <circle cx="1052" cy="968" r="64" fill="#2d241a" stroke="#b08d57" stroke-opacity="0.35" stroke-width="3"/>
-      <circle cx="1098" cy="968" r="46" fill="#241c14" stroke="#b08d57" stroke-opacity="0.3" stroke-width="2"/>
+      <circle cx="998" cy="968" r="14" fill="#d88432"/>
+      <circle cx="1052" cy="968" r="64" fill="#2d241a" stroke="#d88432" stroke-opacity="0.35" stroke-width="3"/>
+      <circle cx="1098" cy="968" r="46" fill="#241c14" stroke="#d88432" stroke-opacity="0.3" stroke-width="2"/>
     </g>
-    <line x1="462" y1="968" x2="522" y2="968" stroke="#b08d57" stroke-width="26"/>
-    <line x1="878" y1="968" x2="938" y2="968" stroke="#b08d57" stroke-width="26"/>
+    <line x1="462" y1="968" x2="522" y2="968" stroke="#d88432" stroke-width="26"/>
+    <line x1="878" y1="968" x2="938" y2="968" stroke="#d88432" stroke-width="26"/>
   </g>
 
   <text x="104" y="1024" font-family="Georgia, serif" font-size="24" letter-spacing="10" fill="#f4efe8" opacity="0.3">VELA</text>

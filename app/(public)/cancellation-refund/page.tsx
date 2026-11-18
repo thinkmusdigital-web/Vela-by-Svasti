@@ -7,7 +7,7 @@ export const revalidate = 300;
 export const metadata: Metadata = {
   title: "Cancellation / Refund Policy",
   description:
-    "Cancellation and refund policy for stays planned through Vela by Svasti, VIP Chowk, Raipur.",
+    "Cancellation and refund policy for stays planned through Vela by Svasti, vip square, Raipur.",
   alternates: { canonical: "/cancellation-refund" },
 };
 

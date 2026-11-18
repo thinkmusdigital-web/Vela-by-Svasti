@@ -11,7 +11,7 @@ export function AdminShell({ user, children }: { user: AdminUser; children: Reac
     <div className="min-h-screen bg-cream">
       <aside className="fixed inset-y-0 left-0 z-30 flex w-60 flex-col border-r border-line bg-white">
         <Link href="/admin" className="block border-b border-line px-6 py-5">
-          <Logo variant="dark" layout="wordmark" height={34} />
+          <Logo variant="light-surface" layout="wordmark" height={34} />
         </Link>
         <nav className="flex-1 overflow-y-auto py-4" aria-label="Admin">
           {Object.entries(

@@ -12,7 +12,7 @@ export const revalidate = 300;
 export const metadata: Metadata = {
   title: "Offers",
   description:
-    "Current offers at Vela by Svasti, VIP Chowk, Raipur. View details and enquire for availability.",
+    "Current offers at Vela by Svasti, vip square, Raipur. View details and enquire for availability.",
   alternates: { canonical: "/offers" },
 };
 

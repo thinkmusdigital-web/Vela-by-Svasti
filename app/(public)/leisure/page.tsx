@@ -10,7 +10,7 @@ export const revalidate = 300;
 export const metadata: Metadata = {
   title: "Leisure",
   description:
-    "Rooftop swimming pool and leisure spaces at Vela by Svasti, VIP Chowk, Raipur. Enquire for access and timings.",
+    "Rooftop swimming pool and leisure spaces at Vela by Svasti, vip square, Raipur. Enquire for access and timings.",
   alternates: { canonical: "/leisure" },
 };
 

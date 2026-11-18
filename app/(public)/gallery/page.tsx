@@ -10,7 +10,7 @@ export const revalidate = 300;
 export const metadata: Metadata = {
   title: "Gallery",
   description:
-    "A look inside Vela by Svasti — rooms, restaurant, café, bar, spa, gym, rooftop pool, events and interiors at VIP Chowk, Raipur.",
+    "A look inside Vela by Svasti — rooms, restaurant, café, bar, spa, gym, rooftop pool, events and interiors at vip square, Raipur.",
   alternates: { canonical: "/gallery" },
 };
 

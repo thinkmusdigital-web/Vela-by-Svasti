@@ -11,7 +11,7 @@ export const revalidate = 300;
 export const metadata: Metadata = {
   title: "Dine",
   description:
-    "Fine dining, café and premium bar at Vela by Svasti, VIP Chowk, Raipur. Menu and hours are confirmed with our team.",
+    "Fine dining, café and premium bar at Vela by Svasti, vip square, Raipur. Menu and hours are confirmed with our team.",
   alternates: { canonical: "/dine" },
 };
 

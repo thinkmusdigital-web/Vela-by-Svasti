@@ -13,7 +13,7 @@ export const revalidate = 300;
 export const metadata: Metadata = {
   title: "Events & Banquets",
   description:
-    "Weddings, corporate events, conferences, birthdays and private events at Vela by Svasti, VIP Chowk, Raipur. Plan your occasion with our events team.",
+    "Weddings, corporate events, conferences, birthdays and private events at Vela by Svasti, vip square, Raipur. Plan your occasion with our events team.",
   alternates: { canonical: "/events" },
 };
 

@@ -28,14 +28,14 @@ function FacilityIcon({ children }: { children: ReactNode }) {
 export const metadata: Metadata = {
   title: "About",
   description:
-    "About Vela by Svasti — a contemporary lifestyle hotel at VIP Chowk, Raipur, Chhattisgarh, with 70+ rooms, dining, wellness, rooftop pool and event spaces.",
+    "About Vela by Svasti — a contemporary lifestyle hotel at vip square, Raipur, Chhattisgarh, with 70+ rooms, dining, wellness, rooftop pool and event spaces.",
   alternates: { canonical: "/about" },
 };
 
 export default async function AboutPage() {
   const body = await getContentValue(
     "home.about_body",
-    "Vela by Svasti is a contemporary lifestyle hospitality destination at VIP Chowk, Raipur, Chhattisgarh.",
+    "Vela by Svasti is a contemporary lifestyle hospitality destination at vip square, Raipur, Chhattisgarh.",
   );
 
   const facilities = [
@@ -118,7 +118,7 @@ export default async function AboutPage() {
       <PageHero
         eyebrow="About"
         title="Vela by Svasti"
-        intro="Stay in the Moment — a contemporary lifestyle hotel at VIP Chowk, Raipur, Chhattisgarh."
+        intro="Stay in the Moment — a contemporary lifestyle hotel at vip square, Raipur, Chhattisgarh."
         image="/images/hotel-exterior.jpg"
         imageAlt="About Vela by Svasti"
       />

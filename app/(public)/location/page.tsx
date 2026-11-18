@@ -10,7 +10,7 @@ export const revalidate = 300;
 export const metadata: Metadata = {
   title: "Location",
   description:
-    "Vela by Svasti is located at VIP Chowk, Raipur, Chhattisgarh. Get directions and reach us easily.",
+    "Vela by Svasti is located at vip square, Raipur, Chhattisgarh. Get directions and reach us easily.",
   alternates: { canonical: "/location" },
 };
 
@@ -19,7 +19,7 @@ export default async function LocationPage() {
     getContactDetails(),
     getContentValue(
       "location.page_body",
-      "Vela by Svasti is at VIP Chowk, Raipur, Chhattisgarh — easy to reach and easy to find.",
+      "Vela by Svasti is at vip square, Raipur, Chhattisgarh — easy to reach and easy to find.",
     ),
   ]);
 
@@ -27,10 +27,10 @@ export default async function LocationPage() {
     <>
       <PageHero
         eyebrow="Location"
-        title="VIP Chowk, Raipur"
+        title="vip square, Raipur"
         intro={body}
         image="/images/hotel-exterior.jpg"
-        imageAlt="Vela by Svasti at VIP Chowk, Raipur"
+        imageAlt="Vela by Svasti at vip square, Raipur"
       />
 
       <section className="bg-cream" aria-label="Finding Vela">
@@ -74,7 +74,7 @@ export default async function LocationPage() {
               <div className="aspect-[4/3] overflow-hidden border border-line">
                 <iframe
                   src={contact.mapEmbedUrl}
-                  title="Map — Vela by Svasti, VIP Chowk, Raipur"
+                  title="Map — Vela by Svasti, vip square, Raipur"
                   className="h-full w-full"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
@@ -84,7 +84,7 @@ export default async function LocationPage() {
               </div>
             ) : (
               <div className="relative aspect-[4/3] overflow-hidden border border-line bg-sand">
-                <MediaImage src="/images/hotel-exterior.jpg" alt="Vela by Svasti — VIP Chowk, Raipur" sizes="(min-width: 1400px) 755px, (min-width: 1024px) calc((100vw - 112px) * 0.583), 100vw" className="h-full w-full object-cover" />
+                <MediaImage src="/images/hotel-exterior.jpg" alt="Vela by Svasti — vip square, Raipur" sizes="(min-width: 1400px) 755px, (min-width: 1024px) calc((100vw - 112px) * 0.583), 100vw" className="h-full w-full object-cover" />
                 <div className="absolute inset-x-0 bottom-0 bg-ink/85 p-5">
                   <p className="text-[0.85rem] text-cream">
                     A Google Map will appear here once the embed link is added in Admin → Website

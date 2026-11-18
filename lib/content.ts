@@ -37,7 +37,7 @@ export interface ContactDetails {
 
 export const getContactDetails = cache(async (): Promise<ContactDetails> => {
   const map = await getContentMap();
-  const address = map["contact.address"] || "VIP Chowk, Raipur, Chhattisgarh";
+  const address = map["contact.address"] || "vip square, Raipur, Chhattisgarh";
 
   // Admin-editable URLs are allow-listed at render time: non-http(s) values
   // (e.g. javascript:) are dropped so they can never become active code.
